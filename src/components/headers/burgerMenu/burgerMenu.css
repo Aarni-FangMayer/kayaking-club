@@ -1,0 +1,72 @@
+/* styles for burger menu elements */
+
+.burgerMenu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(20, 20, 40, 0.95);
+    color: white;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.burgerMenu--open {
+    right: 0;
+}
+
+.burgerMenu__close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.burgerMenu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.burgerMenu__list a,
+.burgerMenu__lang {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.2s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+}
+.burgerMenu__lang-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.burgerMenu__lang-select {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.burgerMenu__list a:hover,
+.burgerMenu__lang:hover {
+    color: var(--grey-blue);
+}

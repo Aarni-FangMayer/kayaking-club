@@ -1,0 +1,33 @@
+/* styles for mobile header elements */
+
+.layout__mobileHeader {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .layout__mobileHeader {
+        display: none;
+    }
+}
+
+@media (max-width: 840px) {
+    .layout__mobileHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        grid-column: 2/12;
+    }
+    .header__logo a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 20px;
+        line-height: 0.7;
+    }
+    .header__info-burgermenu {
+        align-self: end;
+    }
+    .header__info-burgermenu img {
+        height: 30px;
+        width: 40px;
+    }
+}
