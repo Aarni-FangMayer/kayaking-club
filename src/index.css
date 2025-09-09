@@ -24,6 +24,15 @@
   --smoked-blue: #7FA2B4;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE, Edge */
+}
+
 *,
 ::before,
 ::after {
