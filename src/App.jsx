@@ -1,9 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Account from "./pages/Account"
-import Admin from "./pages/Admin";
-import Blogs from "./pages/Blogs";
-import Home from "./pages/Home";
+import Account from "./pages/account/Account"
+import Admin from "./pages/admin/Admin";
+import Blogs from "./pages/blogs/Blogs";
+import Tours from "./pages/tours/Tours";
+import Home from "./pages/home/Home";
+import './App.css'
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
       <Route path="/account" element={<Account />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/blogs" element={<Blogs />} />
+      <Route path="/tours" element={<Tours />} />
       <Route path="/" element={<Home />} />
     </Routes>
   );
