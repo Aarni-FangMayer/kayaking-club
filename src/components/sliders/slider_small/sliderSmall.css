@@ -1,0 +1,13 @@
+.slider-small {
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    gap: 30px;
+    margin-right: -80px;
+}
+
+.slider-small__track {
+    display: flex;
+    align-items: end;
+    gap: 15px;
+}

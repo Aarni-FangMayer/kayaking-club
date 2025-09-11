@@ -1,0 +1,23 @@
+.slider-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.slider-buttons__btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: none;
+}
+
+.slider-buttons__btn:hover {
+    background-color: var(--grey-blue);
+}
+
+.slider-buttons__btn--next {
+    transform: scaleX(-1);
+}

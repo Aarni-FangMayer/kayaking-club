@@ -1,0 +1,29 @@
+.arrow-white-button {
+    background-color: transparent;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    border: none;
+    color: var(--text-light);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.arrow-white-button:hover {
+    font-size: 14px;
+}
+
+.arrow-white-button img {
+    margin-top: 2px;
+}
+
+@media (max-width: 1280px) {
+    .arrow-white-button {
+        font-size: 12px;
+    }
+    .arrow-white-button:hover {
+        font-size: 13px;
+    }
+}
