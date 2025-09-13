@@ -5,7 +5,7 @@ import './mainSectionHome.css'
 
 const MainSectionHome = () => {
   return (
-    <div className="home-main">
+    <section className="home-main">
       <div className="home-content">
         <div className="home-content__image">
           <SliderSmall />
@@ -21,7 +21,7 @@ const MainSectionHome = () => {
           <ArrowBlueButton text={"Join us here"} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
