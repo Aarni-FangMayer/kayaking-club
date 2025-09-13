@@ -73,22 +73,10 @@
 
 @media (max-width: 1024px) {
     .layout__header {
-        margin-bottom: 0;
-    }
-    .layout__header a {
-        font-size: 14px;
-    }
-    .header__logo a {
-        font-size: 18px;
-        line-height: 0.7;
-    }
-    .header__logo a:hover {
-        font-size: 20px;
+        display: none;
     }
 }
 
 @media (max-width: 840px) {
-    .layout__header {
-        display: none;
-    }
+
 }

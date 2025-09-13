@@ -27,11 +27,12 @@
 
 @media (max-width: 1024px) {
     .layout {
-        background-image: url('../../../assets/images/bg_img_mobile.jpg');
         height: 650px;
     }
     .layout__main {
         grid-column: 2/12;
+        overflow: visible;
+        position: absolute;
     }
     .layout__sidebar {
         display: none;
@@ -45,6 +46,7 @@
     .layout__content {
         grid-column: 1/13;
         grid-row: 2/3;
+        overflow-y: visible;
     }
 }
 

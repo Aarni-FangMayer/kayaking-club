@@ -4,6 +4,7 @@ import CardsSmall from '../../cards/cards_small/CardsSmall'
 import './sliderSmall.css'
 
 const SliderSmall = () => {
+  
   return (
     <div className="slider-small">
       <div className="slider-small__controls">
