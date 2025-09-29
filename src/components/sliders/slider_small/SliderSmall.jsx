@@ -8,7 +8,7 @@ const SliderSmall = () => {
   return (
     <div className="slider-small">
       <div className="slider-small__controls">
-        <SliderButtons />
+        <SliderButtons btnType={"vertical"}/>
       </div>
       <div className="slider-small__track">
         <CardsSmall subtitle={'difficulty: easy'} title={'Three-day expeditions for everyone'} btnText={'Book a tour'} />

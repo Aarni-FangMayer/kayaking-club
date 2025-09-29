@@ -11,15 +11,22 @@ const StaticLayout = ({ children }) => {
   const [language, setLanguage] = useState("en");
 
   return (
-    <div className="layout">
-      <Header setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
-      <MobileHeader setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
-      <BurgerMenu setMenuOpen={setMenuOpen} menuOpen={menuOpen} language={language} setLanguage={setLanguage} />
-      <div className="layout__main">
-        <Sidebar />
-        <div className="layout__content">{ children }</div>
+    <>
+      <div className="layout">
+        <Header setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+        <MobileHeader setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+        <BurgerMenu
+          setMenuOpen={setMenuOpen}
+          menuOpen={menuOpen}
+          language={language}
+          setLanguage={setLanguage}
+        />
+        <div className="layout__main">
+          <Sidebar />
+          <div className="layout__content">{children}</div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

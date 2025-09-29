@@ -17,6 +17,7 @@
 
 .burgerMenu--open {
     right: 0;
+    z-index: 2100;
 }
 
 .burgerMenu__close {

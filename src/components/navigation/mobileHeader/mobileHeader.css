@@ -12,7 +12,8 @@
 
 @media (max-width: 1024px) {
     .layout__mobileHeader {
-        position: sticky;
+        position: fixed;
+        width: 100vw;
         top: 0;
         z-index: 2000;
         padding: 15px 0;

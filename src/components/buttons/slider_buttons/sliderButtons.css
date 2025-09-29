@@ -4,6 +4,11 @@
     gap: 10px;
 }
 
+.slider-buttons-horizontal {
+    display: flex;
+    gap: 12px;
+}
+
 .slider-buttons__btn {
     width: 35px;
     height: 35px;
@@ -16,6 +21,16 @@
 
 .slider-buttons__btn:hover {
     background-color: var(--grey-blue);
+}
+
+.slider-buttons-horizontal .slider-buttons__btn {
+    background-color: rgba(87, 134, 154, 0.5);
+    width: 50px;
+    height: 35px;
+}
+
+.slider-buttons-horizontal .slider-buttons__btn:hover {
+    background-color: rgba(87, 134, 154, 0.7);
 }
 
 .slider-buttons__btn--next {
