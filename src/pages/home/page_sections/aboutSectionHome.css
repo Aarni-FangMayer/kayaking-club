@@ -47,7 +47,6 @@
 .about__decor {
     grid-column: 1/19;
     display: flex;
-    justify-content: center;
     gap: 80px;
     flex-wrap: wrap;
 }

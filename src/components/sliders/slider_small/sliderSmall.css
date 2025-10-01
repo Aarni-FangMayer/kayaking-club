@@ -4,12 +4,20 @@
     align-items: end;
     gap: 30px;
     margin-right: -80px;
+    overflow: hidden;
+    position: relative;
+    left: 45%;
+}
+.slider-small__controls {
+    position: absolute;
+    left: 38%;
 }
 
 .slider-small__track {
     display: flex;
     align-items: end;
     gap: 15px;
+    transition: transform 0.3s ease-in-out;
 }
 
 

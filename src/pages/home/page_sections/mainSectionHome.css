@@ -22,6 +22,7 @@
     justify-content: end;
     align-items: end;
     padding-bottom: 60px;
+    position: relative;
 }
 
 .home-content__text {
