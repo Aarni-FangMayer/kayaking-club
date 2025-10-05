@@ -7,6 +7,23 @@ import Image7 from "../../../assets/images/blog_page_img7.jpg";
 import Image8 from "../../../assets/images/blog_page_img8.jpg";
 
 const AllArticlesSectionBlog = () => {
+  const articles = [
+    {
+      id: 1,
+      title: "Meet Our New Instructors 1",
+      data: "August 27, 2025",
+    },
+    {
+      id: 2,
+      title: "Meet Our New Instructors 2",
+      data: "August 27, 2025",
+    },
+    {
+      id: 3,
+      title: "Meet Our New Instructors 3",
+      data: "August 27, 2025",
+    },
+  ]
   return (
     <section className="all-articles">
       <div class="all-blogs-grid__item--row1-col1">
@@ -24,48 +41,18 @@ const AllArticlesSectionBlog = () => {
       <div class="all-blogs-grid__item--col3">
         <CardList arr={articles} subtitle={"article"} header={"All Articles And News"} />
       </div>
-      <div className="all-articles__item all-articles__item--image-right">
-        <div className="image-right"></div>
+      <div class="all-blogs-grid__item--row2-col1">
+        <ArticleCard
+          subtitle={"New Routes Coming"}
+          description={
+            "We’re expanding our adventure map! This fall, River Pulse Club will introduce three new multi-day routes across British Columbia and Alberta. From alpine lakes to remote forest rivers, each trip is crafted to deliver a deeper connection with nature — with our signature gear, guides, and comfort included."
+          }
+          btnText={"Read article"}
+        />
       </div>
-      <div className="all-articles__item all-articles__featured">
-        <div className="all-articles__featured-content">
-          <h3 className="all-articles__featured-header">
-            All Articles And News
-          </h3>
-          <div className="all-articles__featured-info">
-            <p class="all-articles__featured-subtitle subtitle">article</p>
-            <h4 className="all-articles__featured-title">
-              Meet Our New Instructors
-            </h4>
-            <p class="all-articles__featured-subtitle subtitle">
-              August 27, 2025
-            </p>
-          </div>
-          <div className="all-articles__featured-info">
-            <p class="all-articles__featured-subtitle subtitle">article</p>
-            <h4 className="all-articles__featured-title">
-              Meet Our New Instructors
-            </h4>
-            <p class="all-articles__featured-subtitle subtitle">
-              August 27, 2025
-            </p>
-          </div>
-          <div className="all-articles__featured-info">
-            <p class="all-articles__featured-subtitle subtitle">article</p>
-            <h4 className="all-articles__featured-title">
-              Meet Our New Instructors
-            </h4>
-            <p class="all-articles__featured-subtitle subtitle">
-              August 27, 2025
-            </p>
-          </div>
-        </div>
-        <div className="all-articles__controls">
-          <PaginationControl />
-        </div>
-        
+      <div class="all-blogs-grid__item--row2-col2">
+        <ImageBlock image={Image8} alt={"Kayaking instructor"} />
       </div>
-      
     </section>
   );
 };
