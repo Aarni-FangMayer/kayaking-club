@@ -45,7 +45,7 @@ const AllArticlesSectionBlog = () => {
         <ArticleCard
           subtitle={"New Routes Coming"}
           description={
-            "We’re expanding our adventure map! This fall, River Pulse Club will introduce three new multi-day routes across British Columbia and Alberta. From alpine lakes to remote forest rivers, each trip is crafted to deliver a deeper connection with nature — with our signature gear, guides, and comfort included."
+            "We’re expanding our adventure map! This fall, explore three new routes across BC and Alberta — designed for a closer connection with nature and our signature comfort."
           }
           btnText={"Read article"}
         />

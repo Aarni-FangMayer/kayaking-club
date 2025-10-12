@@ -12,13 +12,14 @@ const PopularArticlesSectionBlog = () => {
     <section className="popular-blogs">
       <div class="grid__item--row1-col1">
         <ArticleCard
-          subtitle={"Tips for Your First Kayaking Trip"}
+          subtitle={"Tips for First Kayaking Trip"}
           description={
-            "Your first kayaking trip can feel both exciting and a little intimidating. With the right attitude and some simple preparation, it soon becomes one of the most enjoyable and rewarding outdoor adventures."
+            "Your first kayaking trip can feel daunting, but with a little prep it quickly becomes a fun, rewarding adventure."
           }
           btnText={"Read article"}
         />
       </div>
+      <h2 className="grid__item--mobile-title">Popular Articles</h2>
       <div class="grid__item--row1-col2">
         <ImageWithTitleBlock image={Image4} title={"Popular Articles"} />
       </div>
@@ -38,7 +39,7 @@ const PopularArticlesSectionBlog = () => {
         <ArticleCard
           subtitle={"How to Choose the Kayak"}
           description={
-            "With so many kayaks available, choosing the right one can feel tricky. This guide breaks down the main types and helps you match your kayak to your goals — from calm lakes to long expeditions or coastal trips."
+            "Choosing the right kayak can be tricky — this guide explains the main types and helps match one to your paddling goals."
           }
           btnText={"Read article"}
         />

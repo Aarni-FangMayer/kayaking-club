@@ -18,12 +18,9 @@ const InfoSectionBlog = () => {
       </div>
       <div class="info-grid__item--row2-col2">
         <div className="info__item--text">
-          <h3>Read stories and find inspiration</h3>
+          <h3>Find Inspiration Here</h3>
           <p>
-            Whether you're planning your first paddle or reminiscing about your
-            last expedition, our blog is your go-to source for everything
-            kayaking. Here, we share stories from the river, expert advice, and
-            behind-the-scenes glimpses into life at River Pulse Club.
+           Whether it’s your first paddle or your latest expedition, our blog is your source for stories, expert advice, and life behind the scenes at River Pulse Club.
           </p>
         </div>
       </div>
