@@ -15,3 +15,25 @@
 .article-card-promo-title {
     color: var(--green);
 }
+
+@media (max-width: 1400px) {
+
+}
+
+@media (max-width: 1280px) {
+    .article-card-promo  {
+        padding: 2vh;
+    }
+    .hide-block {
+        display: none;
+    }
+    .article-card-promo-subtitle {
+        font-size: 11px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hide-block {
+        display: block;
+    }
+}

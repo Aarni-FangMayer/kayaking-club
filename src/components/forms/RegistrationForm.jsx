@@ -4,7 +4,7 @@ import './registrationForm.css'
 
 const RegistrationForm = ({ title, className  }) => {
   return (
-    <div className={`registration__form ${className || ""}`}>
+    <div className={`registration__form-block ${className || ""}`}>
         <h3 className="registration__form-title">{title}</h3>
         <form action="" className="registration__form">
           <input

@@ -24,7 +24,7 @@
         grid-template-columns: repeat(12, 1fr);
     }
     .image__block {
-        grid-column: 8/13;
+        grid-column: 8/12;
         padding-top: 20px;
         height: 250px;
     }

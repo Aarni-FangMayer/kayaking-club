@@ -3,3 +3,15 @@
     height: 100%;
     border-radius: 3px;
 }
+
+@media (max-width: 1024px) {
+    .image {
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 580px) {
+    .image {
+        border-radius: 3px;
+    }
+}
