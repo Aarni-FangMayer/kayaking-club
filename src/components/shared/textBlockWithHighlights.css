@@ -1,0 +1,11 @@
+.account__greeting {
+    margin-bottom: 30px;
+}
+
+.account__subtitle {
+    margin-bottom: 25px;
+}
+
+.account__highlight {
+    color: var(--green);
+}
