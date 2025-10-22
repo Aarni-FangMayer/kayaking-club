@@ -1,0 +1,9 @@
+.reaction-button__btn {
+    background-color: transparent;
+    border: none;
+    width: auto;
+    display: flex;
+    padding-left: 0;
+    margin: 0 10px 0 0;
+    color: var(--text-light);
+}
