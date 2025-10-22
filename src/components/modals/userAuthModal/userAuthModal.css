@@ -1,0 +1,33 @@
+.registration-block {
+    position: relative;
+}
+
+.login-block {
+    position: relative;
+}
+
+/* .close-modal-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+} */
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.reg-input {
+    margin: 10px 15px;
+}
+
+.reg-btn {
+    margin: 15px 0;
+    width: 90%;
+    border: none;
+    border-radius: 3px;
+    background-color: rgba(214, 229, 237, 0.5);
+    color: #2d5566;
+}

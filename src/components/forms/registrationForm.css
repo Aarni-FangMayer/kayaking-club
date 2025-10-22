@@ -27,6 +27,14 @@
     color: rgba(214, 229, 237, 0.5);
 }
 
+.subbutton {
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    background-color: rgba(214, 229, 237, 0.5);
+    color: #2d5566;
+}
+
 @media (max-width: 1400px) {
 }
 

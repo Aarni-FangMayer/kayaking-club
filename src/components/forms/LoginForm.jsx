@@ -1,11 +1,14 @@
 import React from 'react'
 import ArrowBlueButton from '../buttons/arrow_blue/ArrowBlueButton'
-import './registrationForm.css'
+import './loginForm.css'
 
-const RegistrationForm = ({ title, subbutton, registerUser, className  }) => {
+const LoginForm = ({ title, subbutton, loginAccount, subtitle, className  }) => {
   return (
     <div className={`registration__form-block ${className || ""}`}>
         <h3 className="registration__form-title">{title}</h3>
+        <div className="new-registered-user__subtitle">
+          {subtitle}
+        </div>
         <form action="" className="registration__form">
           <input
             type="text"
@@ -22,11 +25,11 @@ const RegistrationForm = ({ title, subbutton, registerUser, className  }) => {
             placeholder="password"
             className="registration__form-field"
           />
-          {subbutton ? <button onClick={registerUser} className="subbutton">{subbutton}</button> : <ArrowBlueButton text={"Join us"} />}
+          {subbutton ? <button onClick={loginAccount} className="subbutton">{subbutton}</button> : <ArrowBlueButton text={"Join us"} />}
           
         </form>
       </div>
   )
 }
 
-export default RegistrationForm
+export default LoginForm
