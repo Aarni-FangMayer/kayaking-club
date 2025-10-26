@@ -7,21 +7,42 @@ import Image7 from "../../../assets/images/blog_page_img7.jpg";
 import Image8 from "../../../assets/images/blog_page_img8.jpg";
 
 const AllArticlesSectionBlog = () => {
-  const articles = [
+  const AllArticleCardContent = [
     {
       id: 1,
       title: "Meet Our New Instructors 1",
       data: "August 27, 2025",
+      description:
+        "Your first kayaking trip can feel daunting, but with a little prep it quickly becomes a fun, rewarding adventure.",
+      textContent:
+        "The four thieves arrived on the south side of the Louvre on Sunday morning at 9:30 and pulled a truck up on the sidewalk, right next to the museum walls. They posed as workers, wearing yellow vests and setting out traffic cones. To anyone strolling along the banks of the Seine, just across the road, it might not have been immediately apparent that the setup was a ruse and that a daring robbery was underway. Workers are a common sight around the Louvre, an ancient, sprawling former palace, whose basic upkeep and renovations make it a constantly transforming construction site. <br><br> The four thieves arrived on the south side of the Louvre on Sunday morning at 9:30 and pulled a truck up on the sidewalk, right next to the museum walls. They posed as workers, wearing yellow vests and setting out traffic cones. To anyone strolling along the banks of the Seine, just across the road, it might not have been immediately apparent that the setup was a ruse and that a daring robbery was underway. Workers are a common sight around the Louvre, an ancient",
+      image: Image7,
+      likesAmount: 1,
+      commentsAmount: 3,
     },
     {
       id: 2,
       title: "Meet Our New Instructors 2",
       data: "August 27, 2025",
+      description:
+        "Your first kayaking trip can feel daunting, but with a little prep it quickly becomes a fun, rewarding adventure.",
+      textContent:
+        "The four thieves arrived on the south side of the Louvre on Sunday morning at 9:30 and pulled a truck up on the sidewalk, right next to the museum walls. They posed as workers, wearing yellow vests and setting out traffic cones. To anyone strolling along the banks of the Seine, just across the road, it might not have been immediately apparent that the setup was a ruse and that a daring robbery was underway. Workers are a common sight around the Louvre, an ancient, sprawling former palace, whose basic upkeep and renovations make it a constantly transforming construction site. <br><br> The four thieves arrived on the south side of the Louvre on Sunday morning at 9:30 and pulled a truck up on the sidewalk, right next to the museum walls. They posed as workers, wearing yellow vests and setting out traffic cones. To anyone strolling along the banks of the Seine, just across the road, it might not have been immediately apparent that the setup was a ruse and that a daring robbery was underway. Workers are a common sight around the Louvre, an ancient",
+      image: Image8,
+      likesAmount: 1,
+      commentsAmount: 3,
     },
     {
       id: 3,
       title: "Meet Our New Instructors 3",
       data: "August 27, 2025",
+      description:
+        "Your first kayaking trip can feel daunting, but with a little prep it quickly becomes a fun, rewarding adventure.",
+      textContent:
+        "The four thieves arrived on the south side of the Louvre on Sunday morning at 9:30 and pulled a truck up on the sidewalk, right next to the museum walls. They posed as workers, wearing yellow vests and setting out traffic cones. To anyone strolling along the banks of the Seine, just across the road, it might not have been immediately apparent that the setup was a ruse and that a daring robbery was underway. Workers are a common sight around the Louvre, an ancient, sprawling former palace, whose basic upkeep and renovations make it a constantly transforming construction site. <br><br> The four thieves arrived on the south side of the Louvre on Sunday morning at 9:30 and pulled a truck up on the sidewalk, right next to the museum walls. They posed as workers, wearing yellow vests and setting out traffic cones. To anyone strolling along the banks of the Seine, just across the road, it might not have been immediately apparent that the setup was a ruse and that a daring robbery was underway. Workers are a common sight around the Louvre, an ancient",
+      image: Image7,
+      likesAmount: 1,
+      commentsAmount: 3,
     },
   ];
 
@@ -62,7 +83,12 @@ const AllArticlesSectionBlog = () => {
         />
       </div>
       <div class="all-blogs-grid__item--col3">
-        <CardList arr={articles} subtitle={"article"} header={"All Articles And News"} />
+        <CardList
+          arr={AllArticleCardContent}
+          subtitle={"article"}
+          header={"All Articles And News"}
+          callback={openCurrentArticle}
+        />
       </div>
       <div class="all-blogs-grid__item--row2-col1">
         <ArticleCard
