@@ -9,6 +9,7 @@ const TextWithImgSection = ({
   btnText,
   img,
   alt,
+  onClickFunction,
 }) => {
   return (
     <div className="text__block">
@@ -17,6 +18,7 @@ const TextWithImgSection = ({
         subtitle={subtitle}
         description={description}
         btnText={btnText}
+        onClickFunction={onClickFunction}
       />
       <div className="image__block">
         <img src={img} alt={alt} />
