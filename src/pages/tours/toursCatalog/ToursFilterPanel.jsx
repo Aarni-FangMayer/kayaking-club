@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import DropdownList from "../../../components/lists/dropdownList/DropdownList";
 import "./toursFilterPanel.css";
 import ArrowBack from "../../../assets/icons/arrow_back.png";
 
 const ToursFilterPanel = ({ selectedTour, handleChangeSelectedTour }) => {
+  const [priceSelected, setPriceSelected] = useState("");
+  const [durationSelected, setDurationSelected] = useState("");
+  const [difficultySelected, setDifficultySelected] = useState("");
+
+  const dropdownItems = [
+    {
+      listName: "Sort by price",
+      options: ["High to Low", "Low to High"],
+    },
+    {
+      listName: "Sort by duration",
+      options: ["Single-Day Trips", "Multi-Day Trips", "Show All"],
+    },
+    {
+      listName: "Sort by difficulty",
+      options: ["Level: Hard to Easy", "Level: Easy to Hard", "Beginners friendly", "Show All"],
+    },
+  ];
+
+const handleSelect = (option, listName) => {
+  console.log('option', option, 'listName', listName)
+  switch (listName){
+    case "Sort by price":
+      setPriceSelected(option);
+      break;
+    case "Sort by duration":
+      setDurationSelected(option);
+      break;
+    case "Sort by difficulty":
+      setDifficultySelected(option);
+      break;
+    default:
+      console.log("filter list not found")
+  }
+}
   return (
     <div className="tours-catalog__filters">
       {selectedTour ? (
@@ -13,47 +49,12 @@ const ToursFilterPanel = ({ selectedTour, handleChangeSelectedTour }) => {
           <img className="back-arrow" src={ArrowBack} alt="" /> Show All Routes
         </button>
       ) : (
-        <>
-          <div className="tours-catalog__title-with-decor">
-            <div className="tours-catalog__decor"></div>
-            <h3 className="tours-catalog__heading">Find your perfect trip</h3>
-            <div className="tours-catalog__decor"></div>
-          </div>
-          <div className="tours-catalog__filter-groups">
-            <div className="tours-catalog__filter tours-catalog__filter--price">
-              <h4 className="tours-catalog__subtitle">Sort by price:</h4>
-              <div className="tours-catalog__filter-buttons">
-                <button className="tours-catalog__button">High to Low</button>
-                <button className="tours-catalog__button">Low to High</button>
-              </div>
-            </div>
-            <div className="tours-catalog__filter tours-catalog__filter--duration">
-              <h4 className="tours-catalog__subtitle">Sort by duration:</h4>
-              <div className="tours-catalog__filter-buttons">
-                <button className="tours-catalog__button">
-                  Single-Day Trips
-                </button>
-                <button className="tours-catalog__button">
-                  Multi-Day Trips
-                </button>
-                <button className="tours-catalog__button">Show All</button>
-              </div>
-            </div>
-            <div className="tours-catalog__filter tours-catalog__filter--difficulty">
-              <h4 className="tours-catalog__subtitle">Sort by difficulty:</h4>
-              <div className="tours-catalog__filter-buttons">
-                <button className="tours-catalog__button">Hard to Easy</button>
-                <button className="tours-catalog__button">Easy to Hard</button>
-                <button className="tours-catalog__button">
-                  Beginners friendly
-                </button>
-                <button className="tours-catalog__button">Show All</button>
-              </div>
-            </div>
-          </div>
-        </>
+        <div className="tours-catalog__filter-groups">
+          {dropdownItems.map((item) => (
+            <DropdownList listName={item.listName} options={item.options} handleSelect={handleSelect} />
+          ))}
+        </div>
       )}
-      <div className="tours-catalog__decor-bottom"></div>
     </div>
   );
 };

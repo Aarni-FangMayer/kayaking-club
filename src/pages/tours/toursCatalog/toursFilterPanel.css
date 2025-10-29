@@ -1,4 +1,10 @@
-.tours-catalog__filters {
+.tours-catalog__filter-groups {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+/* .tours-catalog__filters {
     width: 100%;
     height: 95vh;
     grid-column: 1/6;
@@ -87,4 +93,4 @@
 
 .back-arrow {
     height: 8px;
-}
+} */
