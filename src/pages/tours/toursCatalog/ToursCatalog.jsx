@@ -12,7 +12,6 @@ const ToursCatalog = () => {
 
   return (
     <div className="tours-catalog">
-        <ToursFilterPanel selectedTour={selectedTour} handleChangeSelectedTour={handleChangeSelectedTour} />
         <ToursList selectedTour={selectedTour} handleChangeSelectedTour={handleChangeSelectedTour} />
     </div>
   );
