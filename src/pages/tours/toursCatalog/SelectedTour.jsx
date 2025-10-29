@@ -1,37 +1,52 @@
 import React from "react";
 import "./selectedTour.css";
+import ArrowBack from '../../../assets/icons/arrow_back.png'
 
-const SelectedTour = ({ currentTour }) => {
-    if (!currentTour) return null;
+const SelectedTour = ({ currentTour, handleChangeSelectedTour }) => {
+  if (!currentTour) return null;
+
+  const details = [
+    { label: "Difficulty", value: currentTour.difficulty },
+    { label: "Date of trip", value: currentTour.dateOfTrip },
+    { label: "Included", value: currentTour.included },
+    { label: "Beginners friendly", value: currentTour.level },
+    { label: "Duration", value: currentTour.duration },
+  ];
 
   return (
-    <div className="selected-tour">
-      <h2 className="selected-tour__title">{currentTour.tourName}</h2>
-      <h3 className="selected-tour__subtitle">
-        {currentTour.subtitle}
-      </h3>
-      <div className="selected-tour__images">
-        <img src={currentTour.images[0]} alt="" className="selected-tour__image first-image" />
-        <img src={currentTour.images[1]} alt="" className="selected-tour__image second-image" />
-        <img src={currentTour.images[2]} alt="" className="selected-tour__image third-image" />
-        <img src={currentTour.images[3]} alt="" className="selected-tour__image fourth-image" />
+    <>
+      <button className="selected-tour__back-button" onClick={handleChangeSelectedTour}><img src={ArrowBack} alt="" /> Show All Routes</button>
+      <div className="selected-tour">
+        <h2 className="selected-tour__title">{currentTour.tourName}</h2>
+        <h3 className="selected-tour__subtitle">{currentTour.subtitle}</h3>
+        <div className="selected-tour__image-block">
+          <img
+            src={currentTour.images}
+            alt="Tour image"
+            className="selected-tour__image"
+          />
+        </div>
+        <div className="selected-tour__details">
+          {details.map((item) => (
+            <div key={item.label} className="subtitle selected-tour__detail">
+              {item.label}: {item.value}
+            </div>
+          ))}
+          <div className="selected-tour__price">
+            Price: {currentTour.price} €
+          </div>
+        </div>
+        <p className="selected-tour__description">
+          {currentTour.description}
+        </p>
+        <div className="selected-tour__actions">
+          <button className="selected-tour__button selected-tour__button--white">
+            Book this route
+          </button>
+          <button className="selected-tour__button">Contact Us</button>
+        </div>
       </div>
-      <div className="selected-tour__details">
-        <div className="subtitle selected-tour__detail">difficulty: {currentTour.difficulty}</div>
-        <div className="subtitle selected-tour__detail">date of trip: {currentTour.dateOfTrip}</div>
-        <div className="subtitle selected-tour__detail">included: {currentTour.included}</div>
-        <div className="subtitle selected-tour__detail">beginners friendly: {currentTour.level}</div>
-        <div className="subtitle selected-tour__detail">duration: {currentTour.duration}</div>
-        <div className="selected-tour__price">Price: {currentTour.price} €</div>
-      </div>
-      <div className="selected-tour__description">
-        {currentTour.description}
-      </div>
-      <div className="selected-tour__actions">
-        <button className="selected-tour__button selected-tour__button--white">Book this route</button>
-        <button className="selected-tour__button">Contact Us</button>
-      </div>
-    </div>
+    </>
   );
 };
 
