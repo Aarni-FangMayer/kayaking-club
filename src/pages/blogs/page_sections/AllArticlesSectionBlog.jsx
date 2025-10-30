@@ -8,7 +8,7 @@ import "./allArticlesSectionBlog.css";
 import Image7 from "../../../assets/images/blog_page_img7.jpg";
 import Image8 from "../../../assets/images/blog_page_img8.jpg";
 
-const AllArticlesSectionBlog = () => {
+const AllArticlesSectionBlog = ({ setModalOpen }) => {
   const AllArticleCardContent = [
     {
       id: 1,
@@ -49,18 +49,18 @@ const AllArticlesSectionBlog = () => {
   ];
 
   const [blogModalOpen, setBlogModalOpen] = useState(false);
-  const [currentArticle, setCurrentArticle] = useState({})
-
+  const [currentArticle, setCurrentArticle] = useState({});
 
   const closeBlogModal = () => {
     setBlogModalOpen(false);
+    setModalOpen(false);
   };
 
   const openCurrentArticle = (currentArticle) => {
-    setCurrentArticle(currentArticle)
-    setBlogModalOpen(true)
-  }
-
+    setCurrentArticle(currentArticle);
+    setBlogModalOpen(true);
+    setModalOpen(true);
+  };
 
   return (
     <section id="sectionThree" className="all-articles">
@@ -85,6 +85,7 @@ const AllArticlesSectionBlog = () => {
           image={AllArticleCardContent[0].image}
           textContent={AllArticleCardContent[0].textContent}
           article={AllArticleCardContent[0]}
+          setModalOpen={setModalOpen}
         />
       </div>
       <div class="all-blogs-grid__item--col3">
@@ -105,6 +106,7 @@ const AllArticlesSectionBlog = () => {
           image={AllArticleCardContent[1].image}
           textContent={AllArticleCardContent[1].textContent}
           article={AllArticleCardContent[1]}
+          setModalOpen={setModalOpen}
         />
       </div>
       <div class="all-blogs-grid__item--row2-col2">

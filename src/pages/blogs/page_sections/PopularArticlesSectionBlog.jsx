@@ -7,7 +7,7 @@ import Image4 from "../../../assets/images/blog_page_img4.jpg";
 import Image5 from "../../../assets/images/blog_page_img5.jpg";
 import Image6 from "../../../assets/images/blog_page_img6.jpg";
 
-const PopularArticlesSectionBlog = () => {
+const PopularArticlesSectionBlog = ({ setModalOpen }) => {
   const popularArticleCardContent = [
     {
       id: 1,
@@ -49,6 +49,7 @@ const PopularArticlesSectionBlog = () => {
           image={popularArticleCardContent[0].image}
           textContent={popularArticleCardContent[0].textContent}
           article={popularArticleCardContent[0]}
+          setModalOpen={setModalOpen}
         />
       </div>
       <h2 className="grid__item--mobile-title">Popular Articles</h2>
@@ -63,6 +64,7 @@ const PopularArticlesSectionBlog = () => {
           image={popularArticleCardContent[1].image}
           textContent={popularArticleCardContent[1].textContent}
           article={popularArticleCardContent[1]}
+          setModalOpen={setModalOpen}
         />
       </div>
       <div class="grid__item--row2-col1">
@@ -76,6 +78,7 @@ const PopularArticlesSectionBlog = () => {
           image={popularArticleCardContent[2].image}
           textContent={popularArticleCardContent[2].textContent}
           article={popularArticleCardContent[2]}
+          setModalOpen={setModalOpen}
         />
       </div>
       <div class="grid__item--row2-col3">
