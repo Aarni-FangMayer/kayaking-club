@@ -19,10 +19,12 @@
     grid-column: 4/19;
     border-top-left-radius: 3px;
     z-index: 1;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    /* display: flex;
     justify-content: end;
     align-items: end;
-    padding-bottom: 60px;
+    padding-bottom: 60px; */
     position: relative;
 }
 
