@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Card from "../../cards/card/Card";
 import SliderButtons from "../../buttons/slider_buttons/SliderButtons";
 
 import "./sliderBig.css";
 
-const SliderBig = ({ initialCards, title }) => {
-  const navigate = useNavigate();
+const SliderBig = ({ initialCards, title, setRoutesModalOpen, setModalOpen}) => {
+  // const navigate = useNavigate();
   const [cards, setCards] = useState(initialCards);
 
   const handleNext = () => {
@@ -46,7 +46,7 @@ const SliderBig = ({ initialCards, title }) => {
         })}
         <div className="slider-big__controls">
           <SliderButtons nextSlide={handleNext} prevSlide={handlePrev} />
-          <button className="slider-big__button" onClick={() => navigate("/tours")} >Show all directions</button>
+          <button className="slider-big__button" onClick={() => {setRoutesModalOpen(true); setModalOpen(true)}} >Show all directions</button>
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
 import { React, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import CardMobileActive from "../../cards/card_mobile/CardMobileActive";
 import CardMobileList from "../../cards/card_mobile/CardMobileList";
 
 import "./sliderBigMobile.css";
 
-const SliderBigMobile = ({ cards, blockTitle }) => {
-  const navigate = useNavigate();
+const SliderBigMobile = ({ cards, blockTitle, setRoutesModalOpen, setModalOpen }) => {
+  // const navigate = useNavigate();
   const [selected, setSelected] = useState(1);
 
   return (
@@ -28,7 +28,7 @@ const SliderBigMobile = ({ cards, blockTitle }) => {
       <div className="card-mobile__list">
         <button
           className="card-mobile__button"
-          onClick={() => navigate("/tours")}
+          onClick={() => {setRoutesModalOpen(true); setModalOpen(true)}}
         >
           Show all directions
         </button>
