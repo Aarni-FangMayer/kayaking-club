@@ -30,7 +30,7 @@
 }
 
 .slider-buttons-horizontal .slider-buttons__btn:hover {
-    background-color: rgba(87, 154, 107, 0.7);
+    background-color: var(--grey-blue);
 }
 
 .slider-buttons__btn--next {

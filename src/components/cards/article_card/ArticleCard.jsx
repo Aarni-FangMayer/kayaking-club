@@ -4,11 +4,12 @@ import BlogsModal from '../../modals/blogsModal/BlogsModal'
 import ArticleWithComments from '../../../pages/blogs/ArticleWithComments/ArticleWithComments'
 import './articleCard.css'
 
-const ArticleCard = ({ subtitle, description, image, textContent, article, btnText }) => {
+const ArticleCard = ({ subtitle, description, image, textContent, article, btnText, setModalOpen }) => {
   const [blogModalOpen, setBlogModalOpen] = useState(false);
 
   const closeBlogModal = () => {
     setBlogModalOpen(false);
+    setModalOpen(false);
   }
   return (
     <div className="article-card">
@@ -16,7 +17,7 @@ const ArticleCard = ({ subtitle, description, image, textContent, article, btnTe
             <h3 className="article-card__subtitle">{subtitle}</h3>
             <p className="article-card__description">{description}</p>
         </div>
-        <ArrowBlueButton clickEvent={() => setBlogModalOpen(true)} text={btnText} />
+        <ArrowBlueButton clickEvent={() => {setBlogModalOpen(true); setModalOpen(true)}} text={btnText} />
         <BlogsModal isModalOpen={blogModalOpen} closeModal={closeBlogModal}>
           <ArticleWithComments title={subtitle} text={textContent} image={image} article={article} />
         </BlogsModal>
