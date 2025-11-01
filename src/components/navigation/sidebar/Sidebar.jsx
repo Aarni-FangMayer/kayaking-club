@@ -43,16 +43,25 @@ const Sidebar = ({ activeSection }) => {
         </div>
       </div>
       <button
-        onClick={() =>
-          document.getElementById("contacts").scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          })
-        }
-        className="layout__sidebar-to-top"
+        onClick={() => {
+          if (activeSection === "sectionFour") {
+            document
+              .getElementById("sectionOne")
+              .scrollIntoView({ behavior: "smooth", block: "start" });
+          } else {
+            document
+              .getElementById("sectionFour")
+              .scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }}
+        className={`layout__sidebar-to-top ${
+          activeSection === "sectionFour"
+            ? "layout__sidebar-to-top--active"
+            : ""
+        }`}
       >
         <img src="/arrow_btn.png" alt="" />
-        contacts
+        {activeSection === "sectionFour" ? "back to top" : "contacts"}
       </button>
     </div>
   );

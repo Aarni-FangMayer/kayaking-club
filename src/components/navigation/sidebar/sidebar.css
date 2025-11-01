@@ -97,6 +97,14 @@
     left: -10px;
 }
 
+.layout__sidebar-to-top--active {
+    flex-direction: row-reverse;
+}
+
+.layout__sidebar-to-top--active img {
+    transform: rotate(0deg)!important;
+}
+
 .layout__sidebar-to-top:hover {
     font-size: 17px;
 }
