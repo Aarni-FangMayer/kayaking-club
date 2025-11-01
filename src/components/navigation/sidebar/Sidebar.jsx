@@ -1,58 +1,45 @@
 import React from "react";
 import "./sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ activeSection }) => {
+  const sections = [
+    { id: "sectionOne", number: 1 },
+    { id: "sectionTwo", number: 2 },
+    { id: "sectionThree", number: 3 },
+    { id: "sectionFour", number: 4 },
+  ];
+
   return (
     <div className="layout__sidebar">
       <div className="layout__sidebar-nav">
         <div className="layout__sidebar-nav__line">
-          <div className="layout__sidebar-nav__dot layout__sidebar-nav__dot--active" />
-          <div className="layout__sidebar-nav__dot" />
-          <div className="layout__sidebar-nav__dot" />
-          <div className="layout__sidebar-nav__dot" />
+          {sections.map((s) => (
+            <div
+              key={s.id}
+              className={`layout__sidebar-nav__dot ${
+                activeSection === s.id ? "layout__sidebar-nav__dot--active" : ""
+              }`}
+            />
+          ))}
         </div>
         <div className="layout__sidebar-nav__slide-numbers">
-          <div
-            onClick={() =>
-              document
-                .getElementById("sectionOne")
-                .scrollIntoView({ behavior: "smooth", block: "start" })
-            }
-            className="layout__sidebar-nav__number layout__sidebar-nav__number--active"
-          >
-            1
-          </div>
-          <div
-            onClick={() =>
-              document
-                .getElementById("sectionTwo")
-                .scrollIntoView({ behavior: "smooth", block: "start" })
-            }
-            className="layout__sidebar-nav__number"
-          >
-            2
-          </div>
-          <div
-            onClick={() =>
-              document
-                .getElementById("sectionThree")
-                .scrollIntoView({ behavior: "smooth", block: "start" })
-            }
-            className="layout__sidebar-nav__number"
-          >
-            3
-          </div>
-          <div
-            onClick={() =>
-              document.getElementById("sectionFour").scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              })
-            }
-            className="layout__sidebar-nav__number"
-          >
-            4
-          </div>
+          {sections.map((s) => (
+            <div
+              key={s.id}
+              onClick={() =>
+                document
+                  .getElementById(s.id)
+                  .scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+              className={`layout__sidebar-nav__number ${
+                activeSection === s.id
+                  ? "layout__sidebar-nav__number--active"
+                  : ""
+              }`}
+            >
+              {s.number}
+            </div>
+          ))}
         </div>
       </div>
       <button
