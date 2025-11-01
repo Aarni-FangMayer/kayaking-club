@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./scrollLayout.css";
 
-const ScrollLayout = ({ sectionOne, sectionTwo, sectionThree, sectionFour, modalOpen }) => {
-  const [activeSection, setActiveSection] = useState(0);
-  const sectionsRef = useRef([]);
+const ScrollLayout = ({ sectionOne, sectionTwo, sectionThree, sectionFour, modalOpen, activeSection, setActiveSection, }) => {
+  const sections = ["sectionOne", "sectionTwo", "sectionThree", "sectionFour"];
+
+  const sectionsRef = useRef({});
 
   useEffect(() => {
-    let isScrolling = false;
-
     if (modalOpen) {
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
@@ -16,28 +15,41 @@ const ScrollLayout = ({ sectionOne, sectionTwo, sectionThree, sectionFour, modal
       document.body.style.right = "0";
       document.body.style.overflow = "hidden";
     } else {
-      const scrollY = document.body.style.top;
+      const scrollY = parseInt(document.body.style.top || "0") * -1;
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.overflow = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      window.scrollTo(0, scrollY);
     }
+  }, [modalOpen]);
+
+  useEffect(() => {
+    let isScrolling = false;
 
     const handleWheel = (e) => {
       if (modalOpen) return;
-
       e.preventDefault();
       if (isScrolling) return;
 
       isScrolling = true;
 
-      setActiveSection((prev) => {
-        return e.deltaY > 0
-          ? Math.min(prev + 1, sectionsRef.current.length - 1)
-          : Math.max(prev - 1, 0);
-      });
+      let currentIndex = sections.indexOf(activeSection);
+      if (currentIndex === -1) currentIndex = 0;
+
+      const nextIndex =
+        e.deltaY > 0
+          ? Math.min(currentIndex + 1, sections.length - 1)
+          : Math.max(currentIndex - 1, 0);
+
+      const nextSectionId = sections[nextIndex];
+
+      const nextEl = sectionsRef.current[nextSectionId];
+      if (nextEl) {
+        nextEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActiveSection(nextSectionId);
+      }
 
       setTimeout(() => {
         isScrolling = false;
@@ -48,26 +60,29 @@ const ScrollLayout = ({ sectionOne, sectionTwo, sectionThree, sectionFour, modal
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.overflow = "";
     };
-  }, [modalOpen]);
+  }, [activeSection, modalOpen, setActiveSection]);
 
   useEffect(() => {
-    sectionsRef.current[activeSection]?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const el = sectionsRef.current[activeSection];
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [activeSection]);
+
 
   return (
     <div className="home-scroll-container">
-      <section ref={(el) => (sectionsRef.current[0] = el)}>{sectionOne}</section>
-      <section ref={(el) => (sectionsRef.current[1] = el)}>{sectionTwo}</section>
-      <section ref={(el) => (sectionsRef.current[2] = el)}>{sectionThree}</section>
-      <section ref={(el) => (sectionsRef.current[3] = el)}>{sectionFour}</section>
+      <section ref={(el) => (sectionsRef.current["sectionOne"] = el)}>
+        {sectionOne}
+      </section>
+      <section ref={(el) => (sectionsRef.current["sectionTwo"] = el)}>
+        {sectionTwo}
+      </section>
+      <section ref={(el) => (sectionsRef.current["sectionThree"] = el)}>
+        {sectionThree}
+      </section>
+      <section ref={(el) => (sectionsRef.current["sectionFour"] = el)}>
+        {sectionFour}
+      </section>
     </div>
   );
 };

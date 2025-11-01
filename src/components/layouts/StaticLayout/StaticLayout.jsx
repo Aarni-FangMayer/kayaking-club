@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Header from "../../navigation/header/Header";
 import MobileHeader from "../../navigation/mobileHeader/MobileHeader";
@@ -10,6 +10,7 @@ const StaticLayout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
   const [activeSection, setActiveSection] = useState("sectionOne");
+  const buttonScrollRef = useRef(false)
 
   useEffect(() => {
     const sections = ["sectionOne", "sectionTwo", "sectionThree", "sectionFour"];
@@ -17,7 +18,7 @@ const StaticLayout = ({ children }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !buttonScrollRef.current) {
             setActiveSection(entry.target.id);
           }
         });
@@ -33,6 +34,12 @@ const StaticLayout = ({ children }) => {
     return () => observer.disconnect();
   }, []);
 
+
+
+  const enhancedChild = React.isValidElement(children)
+    ? React.cloneElement(children, { activeSection, setActiveSection })
+    : children;
+
   return (
     <>
       <div className="layout">
@@ -45,8 +52,8 @@ const StaticLayout = ({ children }) => {
           setLanguage={setLanguage}
         />
         <div className="layout__main">
-          <Sidebar activeSection={activeSection} />
-          <div className="layout__content">{children}</div>
+          <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} buttonScrollRef={buttonScrollRef}/>
+          <div className="layout__content">{enhancedChild}</div>
         </div>
       </div>
     </>

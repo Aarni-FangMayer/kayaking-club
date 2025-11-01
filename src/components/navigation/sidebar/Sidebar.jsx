@@ -1,13 +1,25 @@
 import React from "react";
 import "./sidebar.css";
 
-const Sidebar = ({ activeSection }) => {
+const Sidebar = ({ activeSection, setActiveSection, buttonScrollRef }) => {
   const sections = [
     { id: "sectionOne", number: 1 },
     { id: "sectionTwo", number: 2 },
     { id: "sectionThree", number: 3 },
     { id: "sectionFour", number: 4 },
   ];
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      buttonScrollRef.current = true;
+      setActiveSection(id);
+      setTimeout(() => {
+        buttonScrollRef.current = false;
+      }, 800);
+    }
+  };
 
   return (
     <div className="layout__sidebar">
@@ -26,11 +38,7 @@ const Sidebar = ({ activeSection }) => {
           {sections.map((s) => (
             <div
               key={s.id}
-              onClick={() =>
-                document
-                  .getElementById(s.id)
-                  .scrollIntoView({ behavior: "smooth", block: "start" })
-              }
+              onClick={() => scrollToSection(s.id)}
               className={`layout__sidebar-nav__number ${
                 activeSection === s.id
                   ? "layout__sidebar-nav__number--active"
@@ -48,10 +56,13 @@ const Sidebar = ({ activeSection }) => {
             document
               .getElementById("sectionOne")
               .scrollIntoView({ behavior: "smooth", block: "start" });
+            scrollToSection(sections[0].id);
+            
           } else {
             document
               .getElementById("sectionFour")
               .scrollIntoView({ behavior: "smooth", block: "start" });
+              scrollToSection(sections[3].id);
           }
         }}
         className={`layout__sidebar-to-top ${
