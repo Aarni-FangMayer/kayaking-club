@@ -70,8 +70,8 @@ The structure will continue evolving as new features are added.
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd river-pulse
+   git clone https://github.com/Aarni-FangMayer/kayaking-club.git
+   cd frontend
    ```
 2. Install dependencies:
    ```bash
