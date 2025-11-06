@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const cors = require("cors");
 
 const app = express();
 
@@ -9,10 +8,7 @@ const distPath = path.join(__dirname, "dist");
 app.use(express.static(distPath));
 
 /* middleware json parser */
-app.use(express.json())
-
-/* middleware cors*/
-app.use(cors());
+app.use(express.json());
 
 let tours = [
   {
