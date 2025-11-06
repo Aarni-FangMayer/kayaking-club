@@ -178,7 +178,6 @@ let tours = [
       "https://cdn.authentik.com/canada/images/facebook/og-canada-default_52877.png",
     accountId: [],
   },
-  ,
   {
     id: "11",
     name: "La Vérendrye Park Expedition",
