@@ -93,4 +93,4 @@ toursRouter.delete("/api/tours/:id", (request, response) => {
     .catch((error) => next(error));
 });
 
-module.exports = notesRouter;
+module.exports = toursRouter;
