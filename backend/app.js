@@ -4,6 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const middleware = require("./utils/middleware");
 const toursRouter = require("./controllers/tours");
+const usersRouter = require("./controllers/users");
 
 const app = express();
 const path = require("path");
@@ -27,6 +28,7 @@ app.use(express.static(distPath));
 app.use(middleware.requestLogger);
 
 app.use("/api/tours", toursRouter);
+app.use("/api/users", usersRouter);
 
 app.use(middleware.frontendHandler(distPath));
 
