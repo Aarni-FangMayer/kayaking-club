@@ -2,7 +2,7 @@ const toursRouter = require("express").Router();
 const Tour = require("../models/tour");
 
 /* Fetching all tours in list */
-toursRouter.get("/api/tours", (request, response, next) => {
+toursRouter.get("/", (request, response, next) => {
   Tour.find({})
     .then((tours) => {
       response.json(tours);
@@ -11,7 +11,7 @@ toursRouter.get("/api/tours", (request, response, next) => {
 });
 
 /* Fetching a single tour */
-toursRouter.get("/api/tours/:id", (request, response, next) => {
+toursRouter.get("/:id", (request, response, next) => {
   const id = request.params.id;
 
   Tour.findById(id)
@@ -26,7 +26,7 @@ toursRouter.get("/api/tours/:id", (request, response, next) => {
 });
 
 /* Adding a new tour */
-toursRouter.post("/api/tours", (request, response, next) => {
+toursRouter.post("/", (request, response, next) => {
   const {
     name,
     subtitle,
@@ -64,7 +64,7 @@ toursRouter.post("/api/tours", (request, response, next) => {
 });
 
 /* Updating an existing tour */
-toursRouter.put("/api/tours/:id", (request, response, next) => {
+toursRouter.put("/:id", (request, response, next) => {
   const id = request.params.id;
   const updatedData = request.body;
 
@@ -80,7 +80,7 @@ toursRouter.put("/api/tours/:id", (request, response, next) => {
 });
 
 /* Deleting a single tour */
-toursRouter.delete("/api/tours/:id", (request, response) => {
+toursRouter.delete("/:id", (request, response) => {
   const id = request.params.id;
   Tour.findByIdAndDelete(id)
     .then((deletedTour) => {
