@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import blogsService from "../../../services/blogs";
 import ArticleCard from "../../../components/cards/article_card/ArticleCard";
 import ImageBlock from "../../../components/shared/ImageBlock";
 import CardList from "../../../components/lists/CardList";
@@ -9,6 +10,16 @@ import Image7 from "../../../assets/images/blog_page_img7.jpg";
 import Image8 from "../../../assets/images/blog_page_img8.jpg";
 
 const AllArticlesSectionBlog = ({ setModalOpen }) => {
+  const [blogList, setBlogList] = useState([]);
+
+  useEffect(() => {
+    blogsService.getAll().then((response) => {
+      setBlogList(response.data);
+    });
+  }, []);
+
+  console.log(blogList)
+
   const AllArticleCardContent = [
     {
       id: 1,
@@ -67,8 +78,13 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
       <BlogsModal isModalOpen={blogModalOpen} closeModal={closeBlogModal}>
         <ArticleWithComments
           title={currentArticle.title}
-          text={currentArticle.textContent}
+          text={currentArticle.text}
           image={currentArticle.image}
+          likes={currentArticle.likes}
+          comments={currentArticle.comments}
+          date={currentArticle.data}
+          author={currentArticle.author}
+          commentObject={currentArticle.commentObject}
           article={currentArticle}
         />
       </BlogsModal>
@@ -90,7 +106,7 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
       </div>
       <div class="all-blogs-grid__item--col3">
         <CardList
-          arr={AllArticleCardContent}
+          arr={blogList}
           subtitle={"article"}
           header={"All Articles And News"}
           callback={openCurrentArticle}
