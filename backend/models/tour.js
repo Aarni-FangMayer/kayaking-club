@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-  const tourSchema = new mongoose.Schema({
+const tourSchema = new mongoose.Schema({
   name: String,
   subtitle: String,
   description: String,
@@ -19,12 +19,12 @@ const mongoose = require("mongoose");
   ],
 });
 
-tourSchema.set('toJSON', {
+tourSchema.set("toJSON", {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    delete returnedObject._id
-    delete returnedObject.__v
-  }
-})
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
+});
 
 module.exports = mongoose.model("Tour", tourSchema);
