@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import blogsService from "../../../services/blogs";
 import ArticleCard from "../../../components/cards/article_card/ArticleCard";
 import ImageBlock from "../../../components/shared/ImageBlock";
@@ -11,6 +12,13 @@ import Image8 from "../../../assets/images/blog_page_img8.jpg";
 
 const AllArticlesSectionBlog = ({ setModalOpen }) => {
   const [blogList, setBlogList] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+  axios.get("/api/users").then(res => {
+    setCurrentUser(res.data[0]);
+  });
+}, []);
 
   useEffect(() => {
     blogsService.getAll().then((response) => {
@@ -85,6 +93,8 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
           date={currentArticle.data}
           author={currentArticle.author}
           commentObject={currentArticle.commentObject}
+          blogId={currentArticle.id}
+          user={currentUser}
           article={currentArticle}
         />
       </BlogsModal>

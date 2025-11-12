@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Comment from "./Comment";
 import Article from "./Article";
 import CommentForm from "../../../components/forms/CommentForm";
 import "./articleWithComments.css";
 import AvatarImage from "../../../assets/images/avatar.png";
 
-const ArticleWithComments = ({ title, text, image, likes, comments, date, author, commentObject, article }) => {
+const ArticleWithComments = ({ title, text, image, likes, date, author, commentObject, article, blogId, user }) => {
   // const comments = [
   //   {
   //     id: 1,
@@ -40,6 +40,13 @@ const ArticleWithComments = ({ title, text, image, likes, comments, date, author
   //     likesAmount: 3,
   //   },
   // ];
+  const [comments, setComments] = useState(commentObject);
+
+  const handleCommentAdded = (newComment) => {
+    setComments((prev) => [...prev, newComment]);
+  };
+
+  // const commentCount = commentObject.length;
 
   const handleShare = () => {
     if (navigator.share) {
@@ -67,18 +74,18 @@ const ArticleWithComments = ({ title, text, image, likes, comments, date, author
           handleShare={handleShare}
           dateOfPublication={date}
           likes={likes}
-          comments={comments}
+          comments={comments.length}
           author={author}
           article={article}
         />
         <div className="comment-block">
           <h3 className="comment-base__title">Comments to the post</h3>
           <div className="comment-base">
-            {commentObject.map((comment) => {
-              return <Comment comment={comment} />;
+            {comments.map((comment) => {
+              return <Comment key={comment.comment_id} comment={comment} />;
             })}
           </div>
-          <CommentForm />
+          <CommentForm blogId={blogId} user={user} onCommentAdded={handleCommentAdded} />
         </div>
       </div>
     </>
