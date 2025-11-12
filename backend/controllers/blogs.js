@@ -89,4 +89,27 @@ blogsRouter.delete("/:id", (request, response) => {
     .catch((error) => next(error));
 });
 
+/* Adding a new comment to a specific blog */
+blogsRouter.post("/:id/comments", (request, response, next) => {
+  const blogId = request.params.id;
+  const newComment = request.body;
+
+  Blog.findById(blogId)
+    .then(blog => {
+      if (!blog) {
+        return response.status(404).json({ error: "Blog not found" });
+      }
+
+      blog.commentObject.push(newComment);
+      blog.comments = blog.commentObject.length;
+
+      return blog.save();
+    })
+    .then(savedBlog => {
+      const addedComment = savedBlog.commentObject[savedBlog.commentObject.length - 1];
+      response.status(201).json(addedComment);
+    })
+    .catch(next);
+})
+
 module.exports = blogsRouter;
