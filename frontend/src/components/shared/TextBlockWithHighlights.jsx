@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import toursService from '../../services/tours'
+import toursService from "../../services/tours";
+import blogsService from "../../services/blogs";
 import "./textBlockWithHighlights.css";
 
 const TextBlockWithHighlights = ({
@@ -11,6 +12,7 @@ const TextBlockWithHighlights = ({
   addPostBtnText,
 }) => {
   const [tours, setTours] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   const [newTour, setNewTour] = useState({
     name: "",
@@ -25,16 +27,41 @@ const TextBlockWithHighlights = ({
     image: "",
   });
 
-   useEffect(() => {
+  const [newBlog, setNewBlog] = useState({
+    title: "",
+    subtitle: "",
+    text: "",
+    image: "",
+    data: new Date().toLocaleDateString("en-CA", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    author: "Admin F.",
+  });
+
+  useEffect(() => {
     toursService
       .getAll()
       .then((response) => setTours(response.data))
       .catch((error) => console.error("Error loading tours:", error));
   }, []);
 
+  useEffect(() => {
+    blogsService
+      .getAll()
+      .then((response) => setBlogs(response.data))
+      .catch((error) => console.error("Error loading blogs:", error));
+  }, []);
+
   const handleTourChange = (event) => {
     const { name, value } = event.target;
     setNewTour((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlogChange = (event) => {
+    const { name, value } = event.target;
+    setNewBlog((prev) => ({ ...prev, [name]: value }));
   };
 
   const addTour = (event) => {
@@ -45,27 +72,61 @@ const TextBlockWithHighlights = ({
       id: `tour-${Date.now().toString(36)}`,
       ...newTour,
     };
-    toursService.create(tourObject).then(response => {
-      setTours((prev) => prev.concat(response.data))
+    toursService.create(tourObject).then((response) => {
+      setTours((prev) => prev.concat(response.data));
       setNewTour({
-      name: "",
-      subtitle: "",
-      description: "",
-      included: "",
-      dateOfTrip: "",
-      difficulty: "easy",
-      forBeginners: "",
-      duration: "",
-      price: "",
-      image: "",
+        name: "",
+        subtitle: "",
+        description: "",
+        included: "",
+        dateOfTrip: "",
+        difficulty: "easy",
+        forBeginners: "",
+        duration: "",
+        price: "",
+        image: "",
+      });
     });
-    })
-    
+  };
+
+  const addBlog = (event) => {
+    event.preventDefault();
+
+    const blogObject = {
+      id: `blog-${Date.now().toString(36)}`,
+      data: new Date().toLocaleDateString("en-CA", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      author: "Admin F.",
+      ...newBlog,
+    };
+
+    blogsService.create(blogObject).then((response) => {
+      setBlogs((prev) => prev.concat(response.data));
+      setNewBlog({
+        title: "",
+        subtitle: "",
+        text: "",
+        data: new Date().toLocaleDateString("en-CA", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        author: "Admin F.",
+        image: "",
+      });
+    });
   };
 
   useEffect(() => {
-  console.log("Tours updated:", tours);
-}, [tours]);
+    console.log("Tours updated:", tours);
+  }, [tours]);
+
+  useEffect(() => {
+    console.log("Blogs updated:", blogs);
+  }, [blogs]);
 
   return (
     <div className="account__intro">
@@ -104,8 +165,18 @@ const TextBlockWithHighlights = ({
           onChange={handleTourChange}
           placeholder="what included"
         />
-        <input type="text" name="dateOfTrip" value={newTour.dateOfTrip} onChange={handleTourChange} placeholder="tour date" />
-        <select name="difficulty" value={newTour.difficulty} onChange={handleTourChange}>
+        <input
+          type="text"
+          name="dateOfTrip"
+          value={newTour.dateOfTrip}
+          onChange={handleTourChange}
+          placeholder="tour date"
+        />
+        <select
+          name="difficulty"
+          value={newTour.difficulty}
+          onChange={handleTourChange}
+        >
           <option value="hard">hard</option>
           <option value="middle">middle</option>
           <option value="easy">easy</option>
@@ -131,9 +202,27 @@ const TextBlockWithHighlights = ({
           />
           no
         </label>
-        <input type="text" name="duration" value={newTour.duration} onChange={handleTourChange} placeholder="duration" />
-        <input type="number" name="price" value={newTour.price} onChange={handleTourChange} placeholder="price" />
-        <input type="text" name="image" value={newTour.image} onChange={handleTourChange} placeholder="image" />
+        <input
+          type="text"
+          name="duration"
+          value={newTour.duration}
+          onChange={handleTourChange}
+          placeholder="duration"
+        />
+        <input
+          type="number"
+          name="price"
+          value={newTour.price}
+          onChange={handleTourChange}
+          placeholder="price"
+        />
+        <input
+          type="text"
+          name="image"
+          value={newTour.image}
+          onChange={handleTourChange}
+          placeholder="image"
+        />
         <button type="submit">create new route</button>
       </form>
       <div className="account__buttons">
@@ -146,6 +235,36 @@ const TextBlockWithHighlights = ({
           <button className="admin-btn add-post-btn">{addPostBtnText}</button>
         )}
       </div>
+      <form onSubmit={addBlog}>
+        <input
+          onChange={handleBlogChange}
+          type="text"
+          name="title"
+          value={newBlog.title}
+          placeholder="add title"
+        />
+        <input
+          onChange={handleBlogChange}
+          type="text"
+          name="subtitle"
+          value={newBlog.subtitle}
+          placeholder="add subtitle"
+        />
+        <input
+          onChange={handleBlogChange}
+          type="text"
+          name="image"
+          value={newBlog.image}
+          placeholder="add image"
+        />
+        <textarea
+          onChange={handleBlogChange}
+          name="text"
+          value={newBlog.text}
+          placeholder="add text"
+        ></textarea>
+        <button type="submit">add blog</button>
+      </form>
     </div>
   );
 };
