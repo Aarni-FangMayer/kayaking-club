@@ -17,7 +17,7 @@ loginRouter.post("/", async (request, response, next) => {
     const userForToken = { username: user.username, id: user._id };
     const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: "7d" });
 
-    response.status(200).json({ token, username: user.username, email: user.email, role: user.role });
+    response.status(200).json({ token: token, username: user.username, email: user.email, role: user.role, phone: user.phone, id: user._id });
   } catch (error) {
     next(error);
   }

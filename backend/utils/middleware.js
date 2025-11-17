@@ -26,7 +26,7 @@ const authenticate = async (req, res, next) => {
   const token = authHeader.substring(7);
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.SECRET);
     const user = await User.findById(decoded.id);
     if (!user) return res.status(401).json({ error: "User not found" });
 
@@ -38,6 +38,7 @@ const authenticate = async (req, res, next) => {
 
     next();
   } catch (error) {
+    logger.info('Invalid token', error)
     return res.status(401).json({ error: "Invalid token" });
   }
 };

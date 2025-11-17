@@ -7,6 +7,7 @@ import Modal from "../../../components/modals/modalLayout/Modal";
 import UserAuthModal from "../../../components/modals/userAuthModal/UserAuthModal";
 import SuccessRegistrationModal from "../../../components/modals/successRegistrationModal/SuccessRegistrationModal";
 import "./mainSectionHome.css";
+import { useAuth } from "../../../contexts/AuthContext";
 
 const MainSectionHome = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -17,6 +18,8 @@ const MainSectionHome = () => {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
 
+  const {setUserAuthState, setUserToken, setUserInformation} = useAuth();
+
   const closeAllModals = () => {
     setLoginModalOpen(false);
     setRegistrationModalOpen(false);
@@ -26,32 +29,38 @@ const MainSectionHome = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const user = await loginService.login({ username, password });
+      const response = await loginService.login({ username, password });
 
-      window.localStorage.setItem("loggedUser", JSON.stringify(user));
+      if (response.status != 200) {
+        console.log('User is not authenticated', response.statusText);
+        setUserAuthState(false)
+        return
+      }
 
-      loginService.setToken(user.token);
+      setUserAuthState(true);
+      setUserToken(response.data.token);
+      setUserInformation(response.data)
 
-      setUser(user);
+      // setUser(user);
+
+      // clean states after successful login
       setUsername("");
       setPassword("");
       setLoginModalOpen(false);
     } catch (error) {
-      console.log("error: wrong credentials", error);
+      console.log("Error: wrong credentials", error);
     }
   };
-
-  console.log(user);
 
   const registerUser = async (newUserData) => {
     try {
       await userService.register(newUserData);
-      console.log("user has been added to database");
+      console.log("User has been added to database");
 
       setRegistrationModalOpen(false);
       setNewUserregistered(true);
     } catch (error) {
-      console.log("registration error", error);
+      console.log("Registration error", error);
     }
   };
 
@@ -68,8 +77,6 @@ const MainSectionHome = () => {
       loginService.setToken(user.token);
     }
   }, []);
-
-  console.log(user);
 
   return (
     <section id="sectionOne" className="home-main">
