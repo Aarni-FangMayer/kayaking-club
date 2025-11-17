@@ -63,7 +63,9 @@ toursRouter.delete("/:id", checkAdmin, (request, response) => {
 /* Fetching a single tour for booking */
 toursRouter.post("/:id/book", authenticate, (request, response, next) => {
   const tourId = request.params.id;
-  const userId = request.user.id;
+  const userId = request.body.user_id;
+
+  console.log('UserId', userId, 'tourId', tourId)
 
   let tourData, userData;
 

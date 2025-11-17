@@ -14,8 +14,13 @@ const update = (id, newObject) => {
   return axios.put(`${baseUrl}/${id}`, newObject);
 };
 
+const book = (id, body, header) => {
+  return axios.post(`${baseUrl}/${id}/book`, body, header)
+};
+
 export default {
   getAll: getAll,
   create: create,
   update: update,
+  book: book,
 };
