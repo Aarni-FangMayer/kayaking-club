@@ -1,31 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import loginService from "../../../services/login";
+import userService from "../../../services/userService";
 import ArrowBlueButton from "../../../components/buttons/arrow_blue/ArrowBlueButton";
 import SliderSmall from "../../../components/sliders/slider_small/SliderSmall";
 import Modal from "../../../components/modals/modalLayout/Modal";
 import UserAuthModal from "../../../components/modals/userAuthModal/UserAuthModal";
 import SuccessRegistrationModal from "../../../components/modals/successRegistrationModal/SuccessRegistrationModal";
-import './mainSectionHome.css'
+import "./mainSectionHome.css";
 
 const MainSectionHome = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
   const [newUserRegistered, setNewUserregistered] = useState(false);
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
+
   const closeAllModals = () => {
-      setLoginModalOpen(false);
-      setRegistrationModalOpen(false);
-      setNewUserregistered(false);
-  }
-
-  const loginAccount = () => {
-    console.log('welcome to ypur account');
     setLoginModalOpen(false);
-  }
-
-  const registerUser = () => {
-    console.log("user has been added to database");
     setRegistrationModalOpen(false);
-    setNewUserregistered(true);
-  }
+    setNewUserregistered(false);
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const user = await loginService.login({ username, password });
+
+      window.localStorage.setItem("loggedUser", JSON.stringify(user));
+
+      loginService.setToken(user.token);
+
+      setUser(user);
+      setUsername("");
+      setPassword("");
+      setLoginModalOpen(false);
+    } catch (error) {
+      console.log("error: wrong credentials", error);
+    }
+  };
+
+  console.log(user);
+
+  const registerUser = async (newUserData) => {
+    try {
+      await userService.register(newUserData);
+      console.log("user has been added to database");
+
+      setRegistrationModalOpen(false);
+      setNewUserregistered(true);
+    } catch (error) {
+      console.log("registration error", error);
+    }
+  };
+
+  const handleLogout = () => {
+    window.localStorage.removeItem("loggedUser");
+    setUser(null);
+  };
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("loggedUser");
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      loginService.setToken(user.token);
+    }
+  }, []);
+
+  console.log(user);
+
   return (
     <section id="sectionOne" className="home-main">
       <div className="home-content">
@@ -40,11 +85,29 @@ const MainSectionHome = () => {
             Our tours are designed to fit your pace, your passion, <br />
             and adventure.
           </p>
-          <ArrowBlueButton clickEvent={() => setLoginModalOpen(true)} text={"Join us here"} />
+          <ArrowBlueButton
+            clickEvent={user ? handleLogout : () => setLoginModalOpen(true)}
+            text={user ? "Logout" : "Join us here"}
+          />
         </div>
       </div>
-      <Modal closeModal={closeAllModals} isModalOpen={loginModalOpen} loginAccount={loginAccount} registrationModalOpen={registrationModalOpen} setRegistrationModalOpen={setRegistrationModalOpen} registerUser={registerUser}>
-        {newUserRegistered ? <SuccessRegistrationModal loginAccount={loginAccount} /> : <UserAuthModal />}
+      <Modal
+        closeModal={closeAllModals}
+        isModalOpen={loginModalOpen}
+        handleLogin={handleLogin}
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+        registrationModalOpen={registrationModalOpen}
+        setRegistrationModalOpen={setRegistrationModalOpen}
+        registerUser={registerUser}
+      >
+        {newUserRegistered ? (
+          <SuccessRegistrationModal handleLogin={handleLogin} />
+        ) : (
+          <UserAuthModal registerUser={registerUser} />
+        )}
       </Modal>
     </section>
   );
