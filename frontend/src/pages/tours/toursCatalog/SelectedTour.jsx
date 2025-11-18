@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./selectedTour.css";
 import ArrowBack from "../../../assets/icons/arrow_back.png";
 import { useAuth } from "../../../contexts/AuthContext";
