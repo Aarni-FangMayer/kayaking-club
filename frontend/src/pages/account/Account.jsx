@@ -1,40 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CardList from "../../components/lists/CardList";
 import StaticLayoutSingle from "../../components/layouts/staticLayoutSingle/StaticLayoutSingle";
 import TextBlockWithHighlights from "../../components/shared/TextBlockWithHighlights";
 import ProfileEditor from "../../components/shared/ProfileEditor";
+import RoutesModal from "../../components/modals/routesModal/RoutesModal";
+import SelectedTour from "../../pages/tours/toursCatalog/SelectedTour"
+import toursService from "../../services/tours";
+import { useAuth } from "../../contexts/AuthContext";
 import "./account.css";
-import AvatarImage from '../../assets/images/avatar.png'
+import AvatarImage from "../../assets/images/avatar.png";
 
 const Account = () => {
-  const bookedTours = [
-    {
-      id: 1,
-      title: "Tour adventure #1",
-      data: "12 jan",
-    },
-    {
-      id: 2,
-      title: "Tour adventure #2",
-      data: "1 okt",
-    },
-    {
-      id: 3,
-      title: "Tour adventure #3",
-      data: "24 sep",
-    },
-    {
-      id: 4,
-      title: "Tour adventure #4",
-      data: "3 mar",
-    },
-  ];
+  const { isAuth, userInfo } = useAuth();
+
+  const [allTours, setAllTours] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState("");
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedTour("");
+  };
+
+  useEffect(() => {
+    toursService.getAll().then((response) => {
+      setAllTours(response.data);
+    });
+  }, []);
+
+  if (!isAuth) {
+    return <div>Please log in</div>;
+  }
+
+  const bookedToursList = allTours.filter((tour) =>
+    tour.accountId.includes(userInfo.id)
+  );
+
+  console.log("All tours list: ", allTours);
+  console.log("Only booked tours list: ", bookedToursList);
+  console.log("Selected tour: ", selectedTour)
+
   return (
     <StaticLayoutSingle>
       <div className="account">
         <div className="account__user">
           <TextBlockWithHighlights
-            title={"Hello, Name Name"}
+            title={`Hello, ${userInfo.username}`}
             subtitle={"Welcome to your personal account"}
             describtion={
               "Here you can change your personal information and see your upcoming reservations. As a registered River Pulse member, you can comment on blog posts and interact with other users in the comments."
@@ -43,16 +54,24 @@ const Account = () => {
             addRouteBtnText={""}
             addPostBtnText={""}
           />
-          <ProfileEditor avatarImg={AvatarImage} />
+          <ProfileEditor avatarImg={AvatarImage} userInfo={userInfo} />
         </div>
         <div className="account__bookings">
           <CardList
             header={"Your Booked Expeditions"}
-            arr={bookedTours}
+            arr={bookedToursList}
             subtitle={"expedition"}
+            callback={(card) => {
+              setSelectedTour(card);
+              setModalOpen(true);
+              
+            }}
           />
         </div>
       </div>
+      <RoutesModal isModalOpen={modalOpen} closeModal={closeModal}>
+        <SelectedTour currentTour={selectedTour} />
+      </RoutesModal>
     </StaticLayoutSingle>
   );
 };

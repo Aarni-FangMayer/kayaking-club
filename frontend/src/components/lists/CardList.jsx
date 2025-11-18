@@ -27,8 +27,8 @@ const CardList = ({ header, arr, subtitle, callback }) => {
           return (
             <li key={card.id} onClick={() => callback(card)}>
               <ArticleCardPromo
-                title={card.title}
-                data={card.data}
+                tourName={card.name}
+                tourDate={card.dateOfTrip}
                 subtitle={subtitle}
               />
             </li>
