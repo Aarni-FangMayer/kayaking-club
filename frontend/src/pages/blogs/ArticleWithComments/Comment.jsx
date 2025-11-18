@@ -16,7 +16,6 @@ const Comment = ({ comment }) => {
       <div className="comment__text">
         <p>{comment.comment_text}</p>
       </div>
-      <ReactionButton reactionsAmount={comment.comment_likes} icon={"❤️"}/>
     </div>
   );
 };
