@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./selectedTour.css";
 import ArrowBack from "../../../assets/icons/arrow_back.png";
 import { useAuth } from "../../../contexts/AuthContext";
@@ -15,6 +15,9 @@ const SelectedTour = ({ currentTour, handleChangeSelectedTour }) => {
     { label: "Duration", value: currentTour.duration },
   ];
 
+  // const [booked, setBooked] = useState(isBooked);
+  const isBooked = currentTour.accountId?.includes(userInfo.id);
+
   const handleBookButton = () => {
     if (isAuth) {
       const body = {
@@ -27,20 +30,38 @@ const SelectedTour = ({ currentTour, handleChangeSelectedTour }) => {
         },
       };
 
-      toursService.book(currentTour.id, body, header).then((response)=>{
-        console.log('Book response', response)
-
-        if (response.status == 200) {
-          alert("You have successfuly booked the tour!");
+      if (!isBooked) {
+        toursService.book(currentTour.id, body, header)
+      .then((response) => {
+        console.log("Book response", response);
+        if (response.status === 200) {
+          alert("You have successfully booked the tour!");
+          // setBooked(true);
         } else {
-          alert("Ops... Something went wrong :(")
+          alert("Oops... Something went wrong :(");
         }
-      });
-
-    } else {
+      })
+      .catch((error) => console.error(error));
+      }
+     else {
+      toursService.bookCancel(currentTour.id, body, header)
+      .then((response) => {
+        console.log("Cancel response", response);
+        if (response.status === 200) {
+          alert("Your booking has been canceled.");
+          // setBooked(false);
+        } else {
+          alert("Oops... Something went wrong while canceling :(");
+        }
+      })
+      .catch((error) => console.error(error));
+    } 
+  } else {
       alert("Please register to be able to book tours.");
     }
-  };
+  }
+
+
 
   if (!currentTour) return null;
 
@@ -78,7 +99,7 @@ const SelectedTour = ({ currentTour, handleChangeSelectedTour }) => {
             onClick={handleBookButton}
             className="selected-tour__button selected-tour__button--white"
           >
-            Book this route
+            {isBooked ? "Cancel booking" : "Book this route"}
           </button>
           <button className="selected-tour__button">Contact Us</button>
         </div>
