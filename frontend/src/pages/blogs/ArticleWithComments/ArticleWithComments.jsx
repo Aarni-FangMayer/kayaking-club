@@ -6,47 +6,13 @@ import "./articleWithComments.css";
 import AvatarImage from "../../../assets/images/avatar.png";
 
 const ArticleWithComments = ({ title, text, image, likes, date, author, commentObject, article, blogId, user }) => {
-  // const comments = [
-  //   {
-  //     id: 1,
-  //     userName: "JoJo_45",
-  //     dateOfPublication: "22-10-2025",
-  //     userAvatar: AvatarImage,
-  //     text: "Gallery, with its treasury of priceless crown jewels, then used power tools to break through a window.",
-  //     likesAmount: 2,
-  //   },
-  //   {
-  //     id: 2,
-  //     userName: "Lili_789",
-  //     dateOfPublication: "20-10-2025",
-  //     userAvatar: AvatarImage,
-  //     text: "To anyone strolling along the banks of the Seine :)",
-  //     likesAmount: 3,
-  //   },
-  //   {
-  //     id: 3,
-  //     userName: "JoJo_45",
-  //     dateOfPublication: "22-10-2025",
-  //     userAvatar: AvatarImage,
-  //     text: "Gallery, with its treasury of priceless crown jewels, then used power tools to break through a window.",
-  //     likesAmount: 2,
-  //   },
-  //   {
-  //     id: 4,
-  //     userName: "Lili_789",
-  //     dateOfPublication: "20-10-2025",
-  //     userAvatar: AvatarImage,
-  //     text: "To anyone strolling along the banks of the Seine :)",
-  //     likesAmount: 3,
-  //   },
-  // ];
+  const { isAuth, userInfo } = useAuth();
+ 
   const [comments, setComments] = useState(commentObject);
 
   const handleCommentAdded = (newComment) => {
     setComments((prev) => [...prev, newComment]);
   };
-
-  // const commentCount = commentObject.length;
 
   const handleShare = () => {
     if (navigator.share) {
