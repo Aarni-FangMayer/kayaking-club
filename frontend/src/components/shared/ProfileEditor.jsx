@@ -4,7 +4,7 @@ import ProfileForm from "../forms/ProfileForm";
 import "./profileEditor.css";
 import editImage from "../../assets/icons/edit_image.png"
 
-const ProfileEditor = ( { avatarImg } ) => {
+const ProfileEditor = ( { avatarImg, userInfo } ) => {
   const [accordion, setAccordion] = useState(false);
   return (
     <div className="account__edit">
@@ -12,7 +12,7 @@ const ProfileEditor = ( { avatarImg } ) => {
       {accordion &&
         <div className="account__edit-content">
           <ProfileAvatar avatarImg={avatarImg} btnText={"change avatar"} />
-          <ProfileForm placeholderName={"Name Name"} placeholderEmail={"email@gmail.com"} placeholderPhone={"40 856 6545"} btnText={"Save"} />
+          <ProfileForm placeholderName={`Current name: ${userInfo.username}`} placeholderEmail={`Current email: ${userInfo.email}`} placeholderPhone={`Current phone: ${userInfo.phone}`} btnText={"Save"} />
         </div>
       }
 
