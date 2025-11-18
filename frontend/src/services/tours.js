@@ -7,7 +7,7 @@ const getAll = () => {
 };
 
 const create = (newObject, header) => {
-console.log('Create tour', newObject, 'header', header)
+  console.log('Create tour', newObject, 'header', header)
   return axios.post(baseUrl, newObject, header);
 };
 
@@ -19,9 +19,17 @@ const book = (id, body, header) => {
   return axios.post(`${baseUrl}/${id}/book`, body, header)
 };
 
+const bookCancel = (id, body, header) => {
+  return axios.delete(`${baseUrl}/${id}/book`, {
+    headers: header.headers,
+    data: body
+  });
+}
+
 export default {
   getAll: getAll,
   create: create,
   update: update,
   book: book,
+  bookCancel: bookCancel,
 };
