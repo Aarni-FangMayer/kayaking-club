@@ -9,7 +9,7 @@ const CommentForm = ({ blogId, onCommentAdded, user }) => {
   if (!user || !user.id) {
     return (
       <div className="comment-form">
-        <p>You must be logged in to comment.</p>
+        <h3>Please log in to your account to post a comment....</h3>
       </div>
     );
   }

@@ -2,16 +2,32 @@ import React, { useState } from "react";
 import Comment from "./Comment";
 import Article from "./Article";
 import CommentForm from "../../../components/forms/CommentForm";
+import { useAuth } from "../../../contexts/AuthContext";
 import "./articleWithComments.css";
 import AvatarImage from "../../../assets/images/avatar.png";
 
-const ArticleWithComments = ({ title, text, image, likes, date, author, commentObject, article, blogId, user }) => {
+const ArticleWithComments = ({
+  title,
+  text,
+  image,
+  likes,
+  date,
+  author,
+  commentObject,
+  article,
+  blogId,
+  user,
+}) => {
   const { isAuth, userInfo } = useAuth();
- 
+
   const [comments, setComments] = useState(commentObject);
 
   const handleCommentAdded = (newComment) => {
-    setComments((prev) => [...prev, newComment]);
+    if (!isAuth) {
+      alert("Please log in to your account to post a comment.");
+    } else {
+      setComments((prev) => [...prev, newComment]);
+    }
   };
 
   const handleShare = () => {
@@ -51,7 +67,11 @@ const ArticleWithComments = ({ title, text, image, likes, date, author, commentO
               return <Comment key={comment.comment_id} comment={comment} />;
             })}
           </div>
-          <CommentForm blogId={blogId} user={user} onCommentAdded={handleCommentAdded} />
+          <CommentForm
+            blogId={blogId}
+            user={userInfo}
+            onCommentAdded={handleCommentAdded}
+          />
         </div>
       </div>
     </>
