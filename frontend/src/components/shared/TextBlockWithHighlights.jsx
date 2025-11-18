@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import toursService from "../../services/tours";
 import blogsService from "../../services/blogs";
+import { useAuth } from "../../contexts/AuthContext";
 import "./textBlockWithHighlights.css";
 
 const TextBlockWithHighlights = ({
@@ -11,6 +12,8 @@ const TextBlockWithHighlights = ({
   addRouteBtnText,
   addPostBtnText,
 }) => {
+  const { userInfo } = useAuth();
+
   const [tours, setTours] = useState([]);
   const [blogs, setBlogs] = useState([]);
 
@@ -71,8 +74,14 @@ const TextBlockWithHighlights = ({
     const tourObject = {
       id: `tour-${Date.now().toString(36)}`,
       ...newTour,
+      userRole: userInfo.role
     };
-    toursService.create(tourObject).then((response) => {
+    const header = {
+      headers: {
+        Authorization: `bearer ${userInfo.token}`,
+      },
+    };
+    toursService.create(tourObject, header).then((response) => {
       setTours((prev) => prev.concat(response.data));
       setNewTour({
         name: "",
