@@ -6,8 +6,9 @@ const getAll = () => {
   return axios.get(baseUrl);
 };
 
-const create = (newObject) => {
-  return axios.post(baseUrl, newObject);
+const create = (newObject, header) => {
+console.log('Create tour', newObject, 'header', header)
+  return axios.post(baseUrl, newObject, header);
 };
 
 const update = (id, newObject) => {
