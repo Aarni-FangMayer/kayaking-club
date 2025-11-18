@@ -2,6 +2,7 @@ const toursRouter = require("express").Router();
 const Tour = require("../models/tour");
 const User = require("../models/user");
 const { authenticate, checkAdmin } = require("../utils/middleware"); // JWT
+const logger = require("../utils/logger");
 
 /* Fetching all tours in list */
 toursRouter.get("/", (request, response, next) => {
@@ -87,6 +88,48 @@ toursRouter.post("/:id/book", authenticate, (request, response, next) => {
     .then(() =>
       response.status(200).json({ message: "Tour booked successfully" })
     )
+    .catch((error) => next(error));
+});
+
+/* Cancel of booking a single tour */
+toursRouter.delete("/:id/book", authenticate, (request, response, next) => {
+  const tourId = request.params.id;
+  const userId = request.body.user_id;
+
+  console.log("Cancel booking → userId:", userId, "tourId:", tourId);
+  logger.info("Cancel booking → userId:", userId, "tourId:", tourId)
+
+  let tourData, userData;
+
+  Tour.findById(tourId)
+    .then((tour) => {
+      if (!tour) return response.status(404).json({ error: "Tour not found" });
+      tourData = tour;
+      return User.findById(userId);
+    })
+    .then((user) => {
+      if (!user) return response.status(404).json({ error: "User not found" });
+      userData = user;
+
+      const tourHasUser = tourData.accountId.includes(userId);
+      const userHasTour = userData.tours_id.includes(tourId);
+
+      if (!tourHasUser || !userHasTour) {
+        return response
+          .status(400)
+          .json({ error: "User has not booked this tour" });
+      }
+
+      tourData.accountId = tourData.accountId.filter((id) => id.toString() !== userId);
+      userData.tours_id = userData.tours_id.filter((id) => id.toString() !== tourId);
+
+      return Promise.all([tourData.save(), userData.save()]);
+    })
+    .then(() => {
+      return response
+        .status(200)
+        .json({ message: "Booking canceled successfully" });
+    })
     .catch((error) => next(error));
 });
 
