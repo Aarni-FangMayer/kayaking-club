@@ -13,7 +13,7 @@ const PaginationControl = ({ currentPage, totalPages, onPageChange }) => {
       >
         <img src={ArrowPrev} alt="arrow button previous" />
       </button>
-      <span class="pagination_buttons--text">
+      <span className="pagination_buttons--text">
         {currentPage} / {totalPages}
       </span>
       <button
