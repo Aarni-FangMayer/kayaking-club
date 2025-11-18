@@ -4,13 +4,16 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 const checkAdmin = (request, response, next) => {
-  const user = request.user;
 
-  if (!user) {
+  const userRole = request.body.userRole;
+
+  logger.info('checkAdmin user', userRole)
+
+  if (!userRole) {
     return response.status(401).json({ error: "Unauthorized" });
   }
 
-  if (user.role !== "admin") {
+  if (userRole !== "admin") {
     return response.status(403).json({ error: "Forbidden: Admins only" });
   }
 
