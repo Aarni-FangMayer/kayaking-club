@@ -1,9 +1,9 @@
 import React from 'react'
 import './reactionButton.css'
 
-const ReactionButton = ({ reactionsAmount, icon }) => {
+const ReactionButton = ({ reactionsAmount, icon, onClick }) => {
   return (
-    <button className="reaction-button__btn">{icon} {reactionsAmount} </button>
+    <button onClick={onClick} className="reaction-button__btn">{icon} {reactionsAmount} </button>
   )
 }
 

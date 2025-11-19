@@ -1,5 +1,6 @@
 const blogsRouter = require("express").Router();
 const Blog = require("../models/blog");
+const { authenticate } = require("../utils/middleware");
 
 /* Fetching all blogs in list */
 blogsRouter.get("/", (request, response, next) => {
@@ -36,7 +37,7 @@ blogsRouter.post("/", (request, response, next) => {
     commentObject,
     data,
     author,
-    image
+    image,
   } = request.body;
 
   const newBlog = new Blog({
@@ -48,7 +49,7 @@ blogsRouter.post("/", (request, response, next) => {
     commentObject,
     data,
     author,
-    image
+    image,
   });
 
   newBlog
@@ -95,7 +96,7 @@ blogsRouter.post("/:id/comments", (request, response, next) => {
   const newComment = request.body;
 
   Blog.findById(blogId)
-    .then(blog => {
+    .then((blog) => {
       if (!blog) {
         return response.status(404).json({ error: "Blog not found" });
       }
@@ -105,11 +106,39 @@ blogsRouter.post("/:id/comments", (request, response, next) => {
 
       return blog.save();
     })
-    .then(savedBlog => {
-      const addedComment = savedBlog.commentObject[savedBlog.commentObject.length - 1];
+    .then((savedBlog) => {
+      const addedComment =
+        savedBlog.commentObject[savedBlog.commentObject.length - 1];
       response.status(201).json(addedComment);
     })
     .catch(next);
-})
+});
+
+/* Adding likes to a specific blog */
+blogsRouter.put("/:id/like", (request, response, next) => {
+  const blogId = request.params.id;
+  const userId = request.body.userId;
+
+  Blog.findById(blogId)
+    .then((blog) => {
+      if (!blog) {
+        return response.status(404).json({ error: "Blog not found" });
+      }
+
+      const index = blog.likes.indexOf(userId);
+
+      if (index === -1) {
+        blog.likes.push(userId);
+      } else {
+        blog.likes.splice(index, 1);
+      }
+
+      return blog.save();
+    })
+    .then((updatedBlog) => {
+      response.status(200).json({ likes: updatedBlog.likes });
+    })
+    .catch((error) => next(error));
+});
 
 module.exports = blogsRouter;

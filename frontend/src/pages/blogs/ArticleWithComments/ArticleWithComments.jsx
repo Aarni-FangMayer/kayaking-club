@@ -16,7 +16,6 @@ const ArticleWithComments = ({
   commentObject,
   article,
   blogId,
-  user,
 }) => {
   const { isAuth, userInfo } = useAuth();
 

@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactionButton from "../../../components/buttons/reaction_button/ReactionButton";
+import likesService from "../../../services/likes";
+import { useAuth } from "../../../contexts/AuthContext";
 import "./article.css";
 
-const Article = ({ title, text, image, likes, comments, author, handleShare, dateOfPublication, article }) => {
+const Article = ({
+  title,
+  text,
+  image,
+  comments,
+  author,
+  handleShare,
+  dateOfPublication,
+  article,
+}) => {
+  const { isAuth, userInfo } = useAuth();
+
+  const [likes, setLikes] = useState(article.likes || []);
+
+  const handleLike = (blogId) => {
+    if (isAuth) {
+      likesService
+        .toggleLike(blogId, userInfo.id, userInfo.token)
+        .then((response) => {
+          setLikes(response.data.likes);
+        })
+        .catch((error) => console.error(error));
+    } else {
+      alert("Log in to like this post.");
+    }
+  };
+
   return (
     <div className="article">
       <h2 className="article__title">{title}</h2>
@@ -12,7 +40,11 @@ const Article = ({ title, text, image, likes, comments, author, handleShare, dat
       />
       <img className="article__image" src={image} />
       <div className="article__actions">
-        <ReactionButton icon={"❤️"} reactionsAmount={likes} />
+        <ReactionButton
+          onClick={() => handleLike(article?.id)}
+          icon={"❤️"}
+          reactionsAmount={likes.length}
+        />
         <ReactionButton icon={"💬"} reactionsAmount={comments} />
         <button className="article__share-btn" onClick={handleShare}>
           🔗 Share
