@@ -8,7 +8,6 @@ import "./staticLayout.css";
 
 const StaticLayout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("en");
   const [activeSection, setActiveSection] = useState("sectionOne");
   const buttonScrollRef = useRef(false)
 
@@ -48,8 +47,6 @@ const StaticLayout = ({ children }) => {
         <BurgerMenu
           setMenuOpen={setMenuOpen}
           menuOpen={menuOpen}
-          language={language}
-          setLanguage={setLanguage}
         />
         <div className="layout__main">
           <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} buttonScrollRef={buttonScrollRef}/>
