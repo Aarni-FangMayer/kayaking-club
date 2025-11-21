@@ -46,6 +46,16 @@ export const AuthProvider = ({ children }) => {
     info && Object.keys(info).length > 0 && setUserInfo(info);
   };
 
+  const logout = () => {
+    localStorage.removeItem("isAuth");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
+
+    setIsAuth(false);
+    setToken("");
+    setUserInfo({});
+  };
+
   const value = {
     isAuth,
     token,
@@ -53,6 +63,7 @@ export const AuthProvider = ({ children }) => {
     setUserAuthState,
     setUserToken,
     setUserInformation,
+    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
