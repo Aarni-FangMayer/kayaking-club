@@ -64,7 +64,6 @@ const Account = () => {
             callback={(card) => {
               setSelectedTour(card);
               setModalOpen(true);
-              
             }}
           />
         </div>
