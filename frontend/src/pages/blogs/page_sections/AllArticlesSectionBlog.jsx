@@ -26,7 +26,6 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
     });
   }, []);
 
-
   const [blogModalOpen, setBlogModalOpen] = useState(false);
   const [currentArticle, setCurrentArticle] = useState({});
 
@@ -40,6 +39,15 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
     setBlogModalOpen(true);
     setModalOpen(true);
   };
+
+  const topLikedBlogs = blogList
+    .slice()
+    .sort((a, b) => (b.likes?.length || 0) - (a.likes?.length || 0))
+    .slice(0, 5);
+
+  const blogsByLikesAsc = blogList
+    .slice()
+    .sort((a, b) => (a.likes?.length || 0) - (b.likes?.length || 0));
 
   return (
     <section id="sectionThree" className="all-articles">
@@ -59,50 +67,55 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
         />
       </BlogsModal>
       <div class="all-blogs-grid__item--row1-col1">
-        {blogList.length > 1 && (
-          <ImageBlock image={blogList[3].image} alt={"Kayaking instructor"} />
+        {topLikedBlogs.length > 1 && (
+          <ImageBlock
+            image={topLikedBlogs[3].image}
+            alt={"Kayaking instructor"}
+          />
         )}
       </div>
       <div class="all-blogs-grid__item--row1-col2">
-        {blogList.length > 0 && (
+        {topLikedBlogs.length > 0 && (
           <ArticleCard
-            subtitle={blogList[3].subtitle}
-            description={blogList[3].description}
+            subtitle={topLikedBlogs[3].subtitle}
+            description={topLikedBlogs[3].description}
             btnText={"Read article"}
-            image={blogList[3].image}
-            textContent={blogList[3].text}
-            article={blogList[3]}
+            image={topLikedBlogs[3].image}
+            textContent={topLikedBlogs[3].text}
+            article={topLikedBlogs[3]}
             callback={openCurrentArticle}
             setModalOpen={setModalOpen}
-            
           />
         )}
       </div>
       <div class="all-blogs-grid__item--col3">
         <CardList
-          arr={blogList}
+          arr={blogsByLikesAsc}
           subtitle={"article"}
           header={"All Articles And News"}
           callback={openCurrentArticle}
         />
       </div>
       <div class="all-blogs-grid__item--row2-col1">
-        {blogList.length > 0 && (
+        {topLikedBlogs.length > 0 && (
           <ArticleCard
-            subtitle={blogList[4].subtitle}
-            description={blogList[4].description}
+            subtitle={topLikedBlogs[4].subtitle}
+            description={topLikedBlogs[4].description}
             btnText={"Read article"}
-            image={blogList[4].image}
-            textContent={blogList[4].text}
-            article={blogList[4]}
+            image={topLikedBlogs[4].image}
+            textContent={topLikedBlogs[4].text}
+            article={topLikedBlogs[4]}
             callback={openCurrentArticle}
             setModalOpen={setModalOpen}
           />
         )}
       </div>
       <div className="all-blogs-grid__item--row2-col2">
-        {blogList.length > 1 && (
-          <ImageBlock image={blogList[4].image} alt={"Kayaking instructor"} />
+        {topLikedBlogs.length > 1 && (
+          <ImageBlock
+            image={topLikedBlogs[4].image}
+            alt={"Kayaking instructor"}
+          />
         )}
       </div>
     </section>
