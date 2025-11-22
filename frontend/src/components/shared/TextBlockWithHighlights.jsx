@@ -34,6 +34,7 @@ const TextBlockWithHighlights = ({
     title: "",
     subtitle: "",
     text: "",
+    description: "",
     image: "",
     data: new Date().toLocaleDateString("en-CA", {
       year: "numeric",
@@ -118,6 +119,7 @@ const TextBlockWithHighlights = ({
         title: "",
         subtitle: "",
         text: "",
+        description: "",
         data: new Date().toLocaleDateString("en-CA", {
           year: "numeric",
           month: "long",
@@ -258,6 +260,13 @@ const TextBlockWithHighlights = ({
           name="subtitle"
           value={newBlog.subtitle}
           placeholder="add subtitle"
+        />
+        <input
+          onChange={handleBlogChange}
+          type="text"
+          name="description"
+          value={newBlog.description}
+          placeholder="add short description"
         />
         <input
           onChange={handleBlogChange}
