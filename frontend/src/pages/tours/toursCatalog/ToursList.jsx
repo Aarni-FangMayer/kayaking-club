@@ -3,6 +3,7 @@ import toursService from "../../../services/tours";
 import SelectedTour from "./SelectedTour";
 import ToursFilterPanel from "./ToursFilterPanel";
 import CatalogTourCard from "../../../components/cards/catalog_tour_card/CatalogTourCard";
+import { sortByPriceAsc, sortByPriceDesc, filterSingleDayTrips, filterMultiDayTrips, sortDifficultyHard, sortDifficultyMiddle, sortDifficultyEasy, filterBeginnersFriendly, shuffleTours } from "../../../utils/sortingTours";
 import "./toursList.css";
 
 const ToursList = ({
@@ -12,21 +13,22 @@ const ToursList = ({
   multiDayTitle,
 }) => {
   const [tourList, setTourList] = useState([]);
+  const [currentTour, setCurrentTour] = useState({});
+  const [sortedTourList, setSortedTourList] = useState(tourList)
 
   useEffect(() => {
     toursService.getAll().then((response) => {
       setTourList(response.data);
+      setSortedTourList(response.data)
     });
   }, []);
-
-  console.log("render", tourList, "tourList");
-
-  const [currentTour, setCurrentTour] = useState({});
 
   const openCurrentTour = (tour) => {
     setCurrentTour(tour);
     handleChangeSelectedTour();
   };
+
+  const sortFunctions = [sortByPriceAsc, sortByPriceDesc, filterSingleDayTrips, filterMultiDayTrips, sortDifficultyHard, sortDifficultyMiddle, sortDifficultyEasy, filterBeginnersFriendly, shuffleTours]
 
   return (
     <div className="tours-catalog__tours-list">
@@ -46,9 +48,12 @@ const ToursList = ({
           <ToursFilterPanel
             selectedTour={selectedTour}
             handleChangeSelectedTour={handleChangeSelectedTour}
+            tourList={tourList}
+            sortFunctions={sortFunctions}
+            setSortedTourList={setSortedTourList}
           />
           <div className="tours-catalog__tours">
-            {tourList.map((tour) => {
+            {sortedTourList.map((tour) => {
               return (
                 <CatalogTourCard
                   clickEvent={() => openCurrentTour(tour)}

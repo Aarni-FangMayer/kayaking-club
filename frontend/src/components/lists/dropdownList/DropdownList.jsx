@@ -6,7 +6,6 @@ import ArrowUp from '../../../assets/icons/polygon_arrow_up.png'
 const DropdownList = ({listName, options, handleSelect}) => {
     const [isOpen, setIsOpen] = useState(false);
 
-
   return (
     <div className="dropdown">
             <button className="dropdown__toggle" onClick={() => setIsOpen(!isOpen)}>
