@@ -19,7 +19,7 @@ const ArticleWithComments = ({
 }) => {
   const { isAuth, userInfo } = useAuth();
 
-  const [comments, setComments] = useState(commentObject);
+  const [comments, setComments] = useState(commentObject || []);
 
   const handleCommentAdded = (newComment) => {
     if (!isAuth) {
