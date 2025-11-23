@@ -37,6 +37,10 @@ but reworked and customized to fit the kayaking club’s theme and needs.
 - **HTTP Client (planned):** Axios  
 
 ---
+## 🔐 Authentication Context
+The frontend uses a **React Context** to manage authentication state across the application.
+
+---
 
 ## 📁 Project Structure
 ```
@@ -54,10 +58,12 @@ src/
 │ ├── shared/
 │ ├── sliders/
 │ └── ui/
-├── hooks/                                  # Custom React hooks
-├── pages/                                  # Page-level components
-├── App.jsx
-└── main.jsx
+├── contexts/                              # React Contexts for state management (e.g., Auth)
+├── hooks/                                 # Custom React hooks
+├── pages/                                 # Page-level components
+├── providers/                             # Context providers and global state wrappers                                  
+├── App.jsx                                # Root component
+└── main.jsx                               # Entry point for React app
 
 ```
 
@@ -83,6 +89,19 @@ The structure will continue evolving as new features are added.
     ```
 Environment variables (.env) will be added in future updates.
 
+## 🔗 Backend Integration
+The frontend communicates with the backend REST API for dynamic data management:
+
+- User Authentication: login, register, role-based access
+
+- Tours: fetching tour list, booking, canceling
+
+- Blogs: fetch blogs, add comments, like posts
+
+- Protected routes: only accessible for authorized users
+
+The backend server should be running at http://localhost:3001 for full functionality.
+
 ## 🧩 Architecture & Code Style
 
 Uses BEM methodology for CSS class naming.
@@ -93,12 +112,14 @@ Emphasis on clean, maintainable, and scalable structure.
 
 ## 🌐 Deployment
 
-Currently not deployed.
-Planned hosting options:
+The frontend is deployed and fully integrated with the backend: [https://kayaking-club.onrender.com/](https://kayaking-club.onrender.com/)
 
-Render
+The deployment includes:  
+- React + Vite frontend  
+- Connected to backend REST API for tours, blogs, and authentication  
+- JWT-based authentication for protected routes
 
-Custom domain hosting
+Planned hosting options: custom domain hosting
 
 
 ## 👨‍💻 Development & Contribution
@@ -108,13 +129,7 @@ Currently, external contributions are not planned.
 
 ## 🔮 Future Plans
 
-Add full backend integration.
-
-Connect REST API for dynamic tour and blog management.
-
-Implement authentication & authorization.
-
-Enable commenting and content creation for authorized users.
+Planned future improvement: custom domain hosting
 
 
 ## 📄 License
