@@ -4,6 +4,7 @@
     border: solid 1px var(--text-light);
     border-radius: 3px;
     background-color: rgba(87, 134, 154, 0.05);
+    margin-bottom: 20px;
 }
 
 .accordion-title {
@@ -17,8 +18,5 @@
 }
 
 .accordion-content {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    column-gap: 20px;
     padding-bottom: 10px;
 }

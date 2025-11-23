@@ -48,17 +48,23 @@ const Admin = () => {
             }
             highlight={""}
           />
-          <Accordion title={"Add New Tour"}><AddNewTourForm userInfo={userInfo}/></Accordion>
-          <Accordion title={"Add New Blog"}><AddNewBlogForm/></Accordion>
-          <Accordion title={"Edit profile"}>
-            <ProfileAvatar avatarImg={AvatarImage} btnText={"change avatar"} />
-            <ProfileForm
-              placeholderName={`Current name: ${userInfo.username}`}
-              placeholderEmail={`Current email: ${userInfo.email}`}
-              placeholderPhone={`Current phone: ${userInfo.phone}`}
-              btnText={"Save"}
-            />
-          </Accordion>
+          <div className="accordions__block">
+            <Accordion title={"Add New Tour"}>
+              <AddNewTourForm userInfo={userInfo} />
+            </Accordion>
+            <Accordion title={"Add New Blog"}>
+              <AddNewBlogForm />
+            </Accordion>
+            <Accordion title={"Edit profile"}>
+              <ProfileForm
+                placeholderName={`Current name: ${userInfo.username}`}
+                placeholderEmail={`Current email: ${userInfo.email}`}
+                placeholderPhone={`Current phone: ${userInfo.phone}`}
+                avatarImg={AvatarImage}
+                btnText={"Save"}
+              />
+            </Accordion>
+          </div>
         </div>
         <div className="account__bookings">
           <CardList

@@ -19,4 +19,5 @@
 
 .account__bookings {
     grid-column: 12/18;
+    height: 70vh;
 }
