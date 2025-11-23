@@ -29,7 +29,6 @@ const ToursFilterPanel = ({
         "Difficulty: Hard",
         "Difficulty: Middle",
         "Difficulty: Easy",
-        "Beginners friendly",
         "Show All",
       ],
     },

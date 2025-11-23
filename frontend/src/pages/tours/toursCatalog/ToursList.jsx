@@ -3,7 +3,7 @@ import toursService from "../../../services/tours";
 import SelectedTour from "./SelectedTour";
 import ToursFilterPanel from "./ToursFilterPanel";
 import CatalogTourCard from "../../../components/cards/catalog_tour_card/CatalogTourCard";
-import { sortByPriceAsc, sortByPriceDesc, filterSingleDayTrips, filterMultiDayTrips, sortDifficultyHard, sortDifficultyMiddle, sortDifficultyEasy, filterBeginnersFriendly, shuffleTours } from "../../../utils/sortingTours";
+import { sortByPriceAsc, sortByPriceDesc, filterSingleDayTrips, filterMultiDayTrips, sortDifficultyHard, sortDifficultyMiddle, sortDifficultyEasy, shuffleTours } from "../../../utils/sortingTours";
 import "./toursList.css";
 
 const ToursList = ({
@@ -28,7 +28,7 @@ const ToursList = ({
     handleChangeSelectedTour();
   };
 
-  const sortFunctions = [sortByPriceAsc, sortByPriceDesc, filterSingleDayTrips, filterMultiDayTrips, sortDifficultyHard, sortDifficultyMiddle, sortDifficultyEasy, filterBeginnersFriendly, shuffleTours]
+  const sortFunctions = [sortByPriceAsc, sortByPriceDesc, filterSingleDayTrips, filterMultiDayTrips, sortDifficultyHard, sortDifficultyMiddle, sortDifficultyEasy, shuffleTours]
 
   return (
     <div className="tours-catalog__tours-list">
