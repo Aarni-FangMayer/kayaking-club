@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import CardList from "../../components/lists/CardList";
 import StaticLayoutSingle from "../../components/layouts/staticLayoutSingle/StaticLayoutSingle";
 import TextBlockWithHighlights from "../../components/shared/TextBlockWithHighlights";
-import ProfileEditor from "../../components/shared/ProfileEditor";
+import Accordion from "../../components/shared/Accordion";
+import ProfileAvatar from "../../components/shared//ProfileAvatar";
+import ProfileForm from "../../components/forms/ProfileForm";
 import RoutesModal from "../../components/modals/routesModal/RoutesModal";
 import SelectedTour from "../../pages/tours/toursCatalog/SelectedTour"
 import toursService from "../../services/tours";
@@ -36,10 +38,6 @@ const Account = () => {
     tour.accountId.includes(userInfo.id)
   );
 
-  console.log("All tours list: ", allTours);
-  console.log("Only booked tours list: ", bookedToursList);
-  console.log("Selected tour: ", selectedTour)
-
   return (
     <StaticLayoutSingle>
       <div className="account">
@@ -54,7 +52,15 @@ const Account = () => {
             addRouteBtnText={""}
             addPostBtnText={""}
           />
-          <ProfileEditor avatarImg={AvatarImage} userInfo={userInfo} />
+          <Accordion title={"Edit profile"}>
+            <ProfileAvatar avatarImg={AvatarImage} btnText={"change avatar"} />
+            <ProfileForm
+              placeholderName={`Current name: ${userInfo.username}`}
+              placeholderEmail={`Current email: ${userInfo.email}`}
+              placeholderPhone={`Current phone: ${userInfo.phone}`}
+              btnText={"Save"}
+            />
+          </Accordion>
         </div>
         <div className="account__bookings">
           <CardList

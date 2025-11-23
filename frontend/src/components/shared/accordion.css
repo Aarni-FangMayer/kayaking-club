@@ -1,4 +1,4 @@
-.account__edit {
+.accordion {
     width: 100%;
     height: auto;
     border: solid 1px var(--text-light);
@@ -6,7 +6,7 @@
     background-color: rgba(87, 134, 154, 0.05);
 }
 
-.account__edit-title {
+.accordion-title {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -16,7 +16,7 @@
     padding: 0 20px;
 }
 
-.account__edit-content {
+.accordion-content {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     column-gap: 20px;
