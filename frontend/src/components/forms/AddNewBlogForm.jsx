@@ -67,8 +67,9 @@ const AddNewBlogForm = () => {
     console.log("Blogs updated:", blogs);
   }, [blogs]);
   return (
-    <form onSubmit={addBlog}>
+    <form className="blogs__form-fields" onSubmit={addBlog}>
       <input
+        className="blogs__input input-title"
         onChange={handleBlogChange}
         type="text"
         name="title"
@@ -76,6 +77,7 @@ const AddNewBlogForm = () => {
         placeholder="add title"
       />
       <input
+        className="blogs__input input-subtitle"
         onChange={handleBlogChange}
         type="text"
         name="subtitle"
@@ -83,6 +85,7 @@ const AddNewBlogForm = () => {
         placeholder="add subtitle"
       />
       <input
+        className="blogs__input input-short-description"
         onChange={handleBlogChange}
         type="text"
         name="description"
@@ -90,6 +93,7 @@ const AddNewBlogForm = () => {
         placeholder="add short description"
       />
       <input
+        className="blogs__input input-image"
         onChange={handleBlogChange}
         type="text"
         name="image"
@@ -97,12 +101,13 @@ const AddNewBlogForm = () => {
         placeholder="add image"
       />
       <textarea
+        className="blogs__input input-text"
         onChange={handleBlogChange}
         name="text"
         value={newBlog.text}
         placeholder="add text"
       ></textarea>
-      <button type="submit">add blog</button>
+      <button className="blogs__submit" type="submit">add blog</button>
     </form>
   );
 };

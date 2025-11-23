@@ -66,8 +66,9 @@ const AddNewTourForm = ({ userInfo }) => {
   }, [tours]);
 
   return (
-    <form onSubmit={addTour}>
+    <form className="tours__form-fields" onSubmit={addTour}>
       <input
+        className="tours__input input-tourname"
         name="name"
         type="text"
         value={newTour.name}
@@ -75,6 +76,7 @@ const AddNewTourForm = ({ userInfo }) => {
         placeholder="tour name"
       />
       <input
+        className="tours__input input-subtitle"
         type="text"
         name="subtitle"
         value={newTour.subtitle}
@@ -82,13 +84,7 @@ const AddNewTourForm = ({ userInfo }) => {
         placeholder="tour subtitle"
       />
       <input
-        type="text"
-        name="description"
-        value={newTour.description}
-        onChange={handleTourChange}
-        placeholder="tour description"
-      />
-      <input
+        className="tours__input input-included"
         type="text"
         name="included"
         value={newTour.included}
@@ -96,43 +92,15 @@ const AddNewTourForm = ({ userInfo }) => {
         placeholder="what included"
       />
       <input
+        className="tours__input input-date"
         type="text"
         name="dateOfTrip"
         value={newTour.dateOfTrip}
         onChange={handleTourChange}
         placeholder="tour date"
       />
-      <select
-        name="difficulty"
-        value={newTour.difficulty}
-        onChange={handleTourChange}
-      >
-        <option value="hard">hard</option>
-        <option value="middle">middle</option>
-        <option value="easy">easy</option>
-      </select>
-      <span>Is it beginners friendely?</span>
-      <label htmlFor="">
-        <input
-          type="radio"
-          name="forBeginners"
-          value="yes"
-          checked={newTour.forBeginners === "yes"}
-          onChange={handleTourChange}
-        />
-        yes
-      </label>{" "}
-      <label htmlFor="">
-        <input
-          type="radio"
-          name="forBeginners"
-          value="no"
-          checked={newTour.forBeginners === "no"}
-          onChange={handleTourChange}
-        />
-        no
-      </label>
       <input
+        className="tours__input input-duration"
         type="text"
         name="duration"
         value={newTour.duration}
@@ -140,6 +108,7 @@ const AddNewTourForm = ({ userInfo }) => {
         placeholder="duration"
       />
       <input
+        className="tours__input input-price"
         type="number"
         name="price"
         value={newTour.price}
@@ -147,13 +116,36 @@ const AddNewTourForm = ({ userInfo }) => {
         placeholder="price"
       />
       <input
+        className="tours__input input-image"
         type="text"
         name="image"
         value={newTour.image}
         onChange={handleTourChange}
         placeholder="image"
       />
-      <button type="submit">create new route</button>
+     
+            <textarea
+        className="tours__input input-description"
+        name="description"
+        value={newTour.description}
+        onChange={handleTourChange}
+        placeholder="tour description"
+      />
+      
+       <label className="tours__form-label">
+        Select difficulty
+        <select
+        className="form-select"
+          name="difficulty"
+          value={newTour.difficulty}
+          onChange={handleTourChange}
+        >
+          <option className="form-select__option" value="hard">hard</option>
+          <option className="form-select__option" value="middle">middle</option>
+          <option className="form-select__option" value="easy">easy</option>
+        </select>
+      </label>
+      <button className="tours__submit" type="submit">create new route</button>
     </form>
   );
 };
