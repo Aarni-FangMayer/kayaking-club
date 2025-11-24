@@ -12,8 +12,11 @@
 }
 
 .routes-modal__content {
-  background: #2d5566;
-  border-radius: 16px;
+  background-image: url("../../../assets/images/modal_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
   width: 95%;
   height: 95%;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);

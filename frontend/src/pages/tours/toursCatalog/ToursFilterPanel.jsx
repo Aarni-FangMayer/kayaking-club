@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DropdownList from "../../../components/lists/dropdownList/DropdownList";
 import "./toursFilterPanel.css";
 import ArrowBack from "../../../assets/icons/arrow_back.png";
+import CloseIcon from "../../../assets/icons/close_filter_icon.png"
 
 const ToursFilterPanel = ({
   selectedTour,
@@ -43,7 +44,8 @@ const ToursFilterPanel = ({
     // by price
     if (priceSelected) {
       if (priceSelected === "Low to High") sorted = sortFunctions[0](sorted);
-      else if (priceSelected === "High to Low") sorted = sortFunctions[1](sorted);
+      else if (priceSelected === "High to Low")
+        sorted = sortFunctions[1](sorted);
       else if (priceSelected === "Show All") sorted = sortFunctions[8](sorted); // shuffle
       setSortedTourList(sorted);
       return;
@@ -51,20 +53,28 @@ const ToursFilterPanel = ({
 
     // by duration
     if (durationSelected) {
-      if (durationSelected === "Single-Day Trips") sorted = sortFunctions[2](sorted);
-      else if (durationSelected === "Multi-Day Trips") sorted = sortFunctions[3](sorted);
-      else if (durationSelected === "Show All") sorted = sortFunctions[8](sorted); // shuffle
+      if (durationSelected === "Single-Day Trips")
+        sorted = sortFunctions[2](sorted);
+      else if (durationSelected === "Multi-Day Trips")
+        sorted = sortFunctions[3](sorted);
+      else if (durationSelected === "Show All")
+        sorted = sortFunctions[8](sorted); // shuffle
       setSortedTourList(sorted);
       return;
     }
 
     // by difficulty
     if (difficultySelected) {
-      if (difficultySelected === "Difficulty: Hard") sorted = sortFunctions[4](sorted);
-      else if (difficultySelected === "Difficulty: Middle") sorted = sortFunctions[5](sorted);
-      else if (difficultySelected === "Difficulty: Easy") sorted = sortFunctions[6](sorted);
-      else if (difficultySelected === "Beginners friendly") sorted = sortFunctions[7](sorted);
-      else if (difficultySelected === "Show All") sorted = sortFunctions[8](sorted); // shuffle
+      if (difficultySelected === "Difficulty: Hard")
+        sorted = sortFunctions[4](sorted);
+      else if (difficultySelected === "Difficulty: Middle")
+        sorted = sortFunctions[5](sorted);
+      else if (difficultySelected === "Difficulty: Easy")
+        sorted = sortFunctions[6](sorted);
+      else if (difficultySelected === "Beginners friendly")
+        sorted = sortFunctions[7](sorted);
+      else if (difficultySelected === "Show All")
+        sorted = sortFunctions[8](sorted); // shuffle
       setSortedTourList(sorted);
       return;
     }
@@ -100,7 +110,7 @@ const ToursFilterPanel = ({
     setDifficultySelected("");
     setDurationSelected("");
     setPriceSelected("");
-  }
+  };
 
   return (
     <div className="tours-catalog__filters">
@@ -109,7 +119,8 @@ const ToursFilterPanel = ({
           className="tours-catalog__button-back"
           onClick={handleChangeSelectedTour}
         >
-          <img className="back-arrow" src={ArrowBack} alt="" /> Show All Routes
+          <img className="back-arrow" src={ArrowBack} alt="" /> Back To All
+          Routes
         </button>
       ) : (
         <div className="tours-catalog__filter-groups">
@@ -122,11 +133,16 @@ const ToursFilterPanel = ({
           ))}
         </div>
       )}
-      <div className="selectedFilter">
-        <span>{priceSelected || durationSelected || difficultySelected} </span>
-        {(priceSelected || durationSelected || difficultySelected) && <span onClick={cleanFilterSelector}> X</span> }
+      <div className="selectedFilter__block">
+        {(priceSelected || durationSelected || difficultySelected) && (
+          <button className="selectedFilter" onClick={cleanFilterSelector}>
+            {priceSelected || durationSelected || difficultySelected}
+            {(priceSelected || durationSelected || difficultySelected) && (
+              <img src={CloseIcon} className="selectedFilter-close" />
+            )}
+          </button>
+        )}
       </div>
-      
     </div>
   );
 };
