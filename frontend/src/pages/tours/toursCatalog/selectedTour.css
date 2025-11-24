@@ -10,9 +10,9 @@
 .selected-tour {
     margin-top: 30px;
     border-radius: 5px;
-    height: 80vh;
+    height: 82vh;
     overflow-y: auto;
-    background-color: var(--green);
+    background-color: rgba(47, 80, 94, 0.55);
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--text-light) transparent;
@@ -41,7 +41,7 @@
 
 .selected-tour__subtitle {
     margin-bottom: 25px;
-    color: #2D5566;
+    color: #28414d;
     font-size: 16px;
 }
 
@@ -56,8 +56,7 @@
 }
 
 .selected-tour__detail {
-    background-color: rgba(47, 80, 94, 0.55);
-    color: aqua;
+    background-color: rgba(40, 65, 77, 0.7);
     padding: 2px 15px;
     border-radius: 3px;
     border: 1px solod #00000013;
@@ -74,15 +73,16 @@
     width: 135px;
     height: 35px;
     border-radius: 3px;
-    border: solid 1px var(--green);
-    background-color: rgba(214, 229, 237, 0.7);
-    color: var(--green);
+    border: solid 1px #82959d65;
+    background-color: rgba(90, 121, 141, 0.7);
+    color: var(--text-light);
     margin-top: 35px;
     display: inline-block;
 }
 
 .selected-tour__button:hover {
     background-color: var(--text-light);
+    color: #28414d;
 }
 
 .selected-tour__image-block {
