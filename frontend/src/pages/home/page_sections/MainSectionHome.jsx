@@ -18,7 +18,7 @@ const MainSectionHome = () => {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
 
-  const {setUserAuthState, setUserToken, setUserInformation} = useAuth();
+  const {setUserAuthState, setUserToken, setUserInformation, isAuth, logout} = useAuth();
 
   const closeAllModals = () => {
     setLoginModalOpen(false);
@@ -41,9 +41,6 @@ const MainSectionHome = () => {
       setUserToken(response.data.token);
       setUserInformation(response.data)
 
-      // setUser(user);
-
-      // clean states after successful login
       setUsername("");
       setPassword("");
       setLoginModalOpen(false);
@@ -65,8 +62,9 @@ const MainSectionHome = () => {
   };
 
   const handleLogout = () => {
-    window.localStorage.removeItem("loggedUser");
+    logout();
     setUser(null);
+    console.log(user)
   };
 
   useEffect(() => {
@@ -93,8 +91,8 @@ const MainSectionHome = () => {
             and adventure.
           </p>
           <ArrowBlueButton
-            clickEvent={user ? handleLogout : () => setLoginModalOpen(true)}
-            text={user ? "Logout" : "Join us here"}
+            clickEvent={isAuth ? handleLogout : () => setLoginModalOpen(true)}
+            text={isAuth  ? "Logout" : "Join us here"}
           />
         </div>
       </div>
