@@ -7,7 +7,10 @@
 
 .comment-block {
     grid-column: 11/19;
-    background-color: rgba(87, 134, 154, 0.5);
+    background-image: url("../../../assets/images/bg_img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     padding: 25px;
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;

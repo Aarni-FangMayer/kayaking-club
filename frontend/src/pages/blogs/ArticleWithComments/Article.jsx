@@ -50,8 +50,12 @@ const Article = ({
           🔗 Share
         </button>
       </div>
-      <p className="article__date">date of publication {dateOfPublication}</p>
-      <p className="article__date">author {author}</p>
+      <div>
+        <p className="article__date">
+          date of publication {dateOfPublication}{" "}
+        </p>
+        <p className="article__date">author: {author}</p>
+      </div>
     </div>
   );
 };

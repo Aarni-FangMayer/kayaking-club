@@ -12,7 +12,7 @@
 }
 
 .blogs-modal__content {
-  background: #2d5566;
+  background-color: var(--dark);
   border-radius: 16px;
   width: 95%;
   height: 95%;
