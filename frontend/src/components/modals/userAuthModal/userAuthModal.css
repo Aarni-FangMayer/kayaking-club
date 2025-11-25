@@ -1,33 +1,38 @@
-.registration-block {
-    position: relative;
+.auth-modal {
+    width: 95%;
+    height: 100%;
+    padding: 30px 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 20px;
 }
 
-.login-block {
-    position: relative;
-}
-
-/* .close-modal-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: transparent;
-    border: none;
-} */
-
-.login__form {
+.auth-modal__forms {
+    grid-column: 1/4;
+    grid-row: 1/4;
+    padding-right: 50px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    row-gap: 50px;
 }
 
-.reg-input {
-    margin: 10px 15px;
+.auth-modal__login-title {
+    line-height: 1.5;
+    margin-bottom: 15px;
 }
 
-.reg-btn {
-    margin: 15px 0;
-    width: 90%;
-    border: none;
+.auth-modal__image-block {
+    grid-column: 4/7;
+    grid-row: 1/4;
     border-radius: 3px;
-    background-color: rgba(214, 229, 237, 0.5);
-    color: #2d5566;
+}
+
+.auth-modal__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 3px;
 }

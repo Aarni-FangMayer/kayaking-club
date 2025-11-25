@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import RegistrationForm from "../../forms/RegistrationForm";
 import LoginForm from "../../forms/LoginForm";
 import "./userAuthModal.css";
+import ModalImage from "../../../assets/images/modal-image.jpg"
 import CloseButton from "../../../assets/icons/close_button.png";
 
 const UserAuthModal = ({
@@ -11,22 +12,13 @@ const UserAuthModal = ({
   setUsername,
   password,
   setPassword,
-  registrationModalOpen,
-  setRegistrationModalOpen,
   registerUser,
 }) => {
   return (
-    <div>
-      {registrationModalOpen ? (
-        <div className="registration-block">
-          <RegistrationForm
-            title={"Registration"}
-            subbutton={"Join us"}
-            registerUser={registerUser}
-          />
-        </div>
-      ) : (
-        <div className="login-block">
+    <div className="auth-modal">
+      <div className="auth-modal__forms">
+        <div className="auth-modal__login">
+          <h2 className="auth-modal__login-title">Already in our club?</h2>
           <LoginForm
             title={"Login to account"}
             subbutton={"Join us"}
@@ -36,11 +28,20 @@ const UserAuthModal = ({
             password={password}
             setPassword={setPassword}
           />
-          <button onClick={setRegistrationModalOpen} className="reg-btn">
-            Registration
-          </button>
         </div>
-      )}
+          {/* <h4>or complete a quick registration</h4> */}
+        <div className="auth-modal__registration">
+          <h2 className="auth-modal__login-title">Quick registration</h2>
+          <RegistrationForm
+            title={"Registration"}
+            subbutton={"Join us"}
+            registerUser={registerUser}
+          />
+        </div>
+      </div>
+      <div className="auth-modal__image-block">
+        <img className="auth-modal__image" src={ModalImage} alt="" />
+      </div>
     </div>
   );
 };

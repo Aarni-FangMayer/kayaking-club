@@ -18,7 +18,8 @@ const MainSectionHome = () => {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
 
-  const {setUserAuthState, setUserToken, setUserInformation, isAuth, logout} = useAuth();
+  const { setUserAuthState, setUserToken, setUserInformation, isAuth, logout } =
+    useAuth();
 
   const closeAllModals = () => {
     setLoginModalOpen(false);
@@ -32,14 +33,14 @@ const MainSectionHome = () => {
       const response = await loginService.login({ username, password });
 
       if (response.status != 200) {
-        console.log('User is not authenticated', response.statusText);
-        setUserAuthState(false)
-        return
+        console.log("User is not authenticated", response.statusText);
+        setUserAuthState(false);
+        return;
       }
 
       setUserAuthState(true);
       setUserToken(response.data.token);
-      setUserInformation(response.data)
+      setUserInformation(response.data);
 
       setUsername("");
       setPassword("");
@@ -56,6 +57,7 @@ const MainSectionHome = () => {
 
       setRegistrationModalOpen(false);
       setNewUserregistered(true);
+      console.log("newUserRegistered", newUserRegistered);
     } catch (error) {
       console.log("Registration error", error);
     }
@@ -64,7 +66,7 @@ const MainSectionHome = () => {
   const handleLogout = () => {
     logout();
     setUser(null);
-    console.log(user)
+    console.log(user);
   };
 
   useEffect(() => {
@@ -92,7 +94,7 @@ const MainSectionHome = () => {
           </p>
           <ArrowBlueButton
             clickEvent={isAuth ? handleLogout : () => setLoginModalOpen(true)}
-            text={isAuth  ? "Logout" : "Join us here"}
+            text={isAuth ? "Logout" : "Join us here"}
           />
         </div>
       </div>
@@ -108,11 +110,7 @@ const MainSectionHome = () => {
         setRegistrationModalOpen={setRegistrationModalOpen}
         registerUser={registerUser}
       >
-        {newUserRegistered ? (
-          <SuccessRegistrationModal handleLogin={handleLogin} />
-        ) : (
-          <UserAuthModal registerUser={registerUser} />
-        )}
+        <UserAuthModal registerUser={registerUser} />
       </Modal>
     </section>
   );
