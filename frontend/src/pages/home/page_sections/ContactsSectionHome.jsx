@@ -32,8 +32,9 @@ const ContactsSectionHome = () => {
               text={"Vancouver, BC, Canada"}
             />
           </div>
+          <ContactForm title={"Any questions?"} />
         </div>
-        <ContactForm title={"Any questions?"} />
+        
       </div>
       <div className="contacts__map map-wrapper">
          {!mapActive && (

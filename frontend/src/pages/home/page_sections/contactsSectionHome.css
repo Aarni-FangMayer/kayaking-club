@@ -10,7 +10,7 @@
 }
 
 .contacts__info {
-    grid-column: 1/10;
+    grid-column: 1/9;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: 10vh auto;
@@ -19,7 +19,7 @@
 }
 
 .contacts__title {
-    grid-column: 1/11;
+    grid-column: 1/9;
 }
 
 .contacts__content {
@@ -30,19 +30,15 @@
     margin-bottom: 30px;
 }
 
-.contacts__map {
-    grid-column: 10/19;
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px;
-    overflow: hidden;
-    height: 435px;
+.contacts__details {
+    margin-bottom: 55px;
 }
 
 .map-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 3px;
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    border-radius: 3px;
 }
 
 .map-overlay {
@@ -69,6 +65,13 @@
   font-size: 1.2rem;
   font-weight: 500;
   pointer-events: none;
+}
+
+.contacts__map {
+    grid-column: 9/19;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    overflow: hidden;  
 }
 
 @media (max-width: 1400px) {
