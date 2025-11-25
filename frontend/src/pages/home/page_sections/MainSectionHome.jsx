@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import loginService from "../../../services/login";
 import userService from "../../../services/userService";
+import { toast } from "react-toastify";
 import ArrowBlueButton from "../../../components/buttons/arrow_blue/ArrowBlueButton";
 import SliderSmall from "../../../components/sliders/slider_small/SliderSmall";
 import Modal from "../../../components/modals/modalLayout/Modal";
@@ -53,13 +54,15 @@ const MainSectionHome = () => {
   const registerUser = async (newUserData) => {
     try {
       await userService.register(newUserData);
-      console.log("User has been added to database");
+
+      toast.success("Registration successful!");
 
       setRegistrationModalOpen(false);
       setNewUserregistered(true);
       console.log("newUserRegistered", newUserRegistered);
     } catch (error) {
       console.log("Registration error", error);
+      toast.error("Registration failed. Please try again.");
     }
   };
 
