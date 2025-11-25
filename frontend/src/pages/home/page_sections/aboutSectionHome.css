@@ -2,6 +2,9 @@
     margin-top: 40px;
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 20px;
 }
 
 .about__content {
@@ -11,15 +14,41 @@
     color: var(--text-light);
     display: grid;
     grid-template-columns: repeat(18, 1fr);
-    gap: 60px 20px;
+    column-gap: 20px;
+    row-gap: 0;
+    align-items: flex-start;
 }
 
-.about__decor {
-    grid-column: 1/19;
-    display: flex;
-    gap: 80px;
-    flex-wrap: wrap;
+.about__content-text {
+    grid-column: 1/8;
 }
+
+.about__content-decor {
+    grid-column: 1/8;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 450px;
+}
+
+.about__image {
+    grid-column: 8/19;
+    grid-row: 1/3;
+    align-self: flex-start;
+    height: 52vh;
+    border-radius: 3px;
+    background-image: url("../../../assets/images/manwithdog_img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* .bout__image-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+} */
 
 @media (max-width: 1280px) {
     .about__decor {

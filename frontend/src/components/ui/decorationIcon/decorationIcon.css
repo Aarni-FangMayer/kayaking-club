@@ -1,15 +1,17 @@
 .decoration-icon {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    align-items: start;
+    width: 180px;
+    margin: 0 15px 25px 0;
+}
+
+.decoration-icon__icon {
+    align-self: center;
 }
 
 .decoration-icon__text {
-    width: 160px;
     text-align: center;
-    font-size: 13px;
-    margin-top: 10px;
 }
 
 @media (max-width: 1280px) {
