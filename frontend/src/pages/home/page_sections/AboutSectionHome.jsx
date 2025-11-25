@@ -13,7 +13,6 @@ const AboutSectionHome = () => {
           description={
             "We believe that adventure should be accessible to everyone. That’s why we focus on comfort, safety, and expert guidance, allowing you to fully immerse yourself in the moment."
           }
-          btnText={"Learn more"}
         />
     </TextWithImgSection>
   );

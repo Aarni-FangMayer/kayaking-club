@@ -8,7 +8,9 @@ const TextBlock = ({ title, subtitle, description, btnText, onClickFunction }) =
       <h2 className="about__title">{title}</h2>
       <h3 className="about__subtitle">{subtitle}</h3>
       <p className="about__description">{description}</p>
-      <ArrowBlueButton text={btnText} clickEvent={onClickFunction} />
+      {btnText && (
+        <ArrowBlueButton text={btnText} clickEvent={onClickFunction} />
+      )}
     </div>
   );
 };

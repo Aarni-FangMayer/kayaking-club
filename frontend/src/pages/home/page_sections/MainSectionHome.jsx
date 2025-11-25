@@ -6,7 +6,6 @@ import ArrowBlueButton from "../../../components/buttons/arrow_blue/ArrowBlueBut
 import SliderSmall from "../../../components/sliders/slider_small/SliderSmall";
 import Modal from "../../../components/modals/modalLayout/Modal";
 import UserAuthModal from "../../../components/modals/userAuthModal/UserAuthModal";
-import SuccessRegistrationModal from "../../../components/modals/successRegistrationModal/SuccessRegistrationModal";
 import "./mainSectionHome.css";
 import { useAuth } from "../../../contexts/AuthContext";
 
