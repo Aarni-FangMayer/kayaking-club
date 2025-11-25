@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ContactItem from "../../../components/shared/ContactItem";
 import ContactForm from "../../../components/forms/ContactForm";
 import "./contactsSectionHome.css";
@@ -8,6 +8,7 @@ import MailImage from "../../../assets/icons/mail.png";
 import LocationImage from "../../../assets/icons/location.png";
 
 const ContactsSectionHome = () => {
+  const [mapActive, setMapActive] = useState(false);
   return (
     <section id="sectionFour" className="contacts">
       <div className="contacts__info">
@@ -34,7 +35,15 @@ const ContactsSectionHome = () => {
         </div>
         <ContactForm title={"Any questions?"} />
       </div>
-      <div className="contacts__map">
+      <div className="contacts__map map-wrapper">
+         {!mapActive && (
+          <div
+            className="map-overlay"
+            onClick={() => setMapActive(true)}
+          >
+            <span className="map-overlay__text">Click to activate map</span>
+          </div>
+        )}
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102531.72663084962!2d-123.20630398250597!3d49.257818190030186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548673f143a94fb3%3A0xbb9196ea9b81f38b!2z0JLQsNC90LrRg9Cy0LXRgCwg0JHRgNC40YLQsNC90YHQutCw0Y8g0JrQvtC70YPQvNCx0LjRjywg0JrQsNC90LDQtNCw!5e1!3m2!1sru!2sfi!4v1759149939485!5m2!1sru!2sfi"
           width="100%"
