@@ -13,6 +13,7 @@ const RegistrationForm = ({ title, subbutton, registerUser, className }) => {
     phone: "",
     password: "",
   });
+  const [successRegistrationMessage, setSuccessRegistrationMessage]  = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,7 +35,7 @@ const RegistrationForm = ({ title, subbutton, registerUser, className }) => {
     }
 
     if (phone) {
-      const digitsOnly = phone.replace(/\D/g, ""); // оставляем только цифры
+      const digitsOnly = phone.replace(/\D/g, "");
       if (digitsOnly.length < 10 || digitsOnly.length > 15) {
         newErrors.phone = "Phone must be 10-15 digits";
         valid = false;
@@ -65,6 +66,8 @@ const RegistrationForm = ({ title, subbutton, registerUser, className }) => {
       setPhone("");
       setPassword("");
       setErrors({});
+
+      setSuccessRegistrationMessage(true);
     }
   };
 
@@ -113,6 +116,7 @@ const RegistrationForm = ({ title, subbutton, registerUser, className }) => {
         ) : (
           <ArrowBlueButton text={"Join us"} />
         )}
+        {successRegistrationMessage && (<div className="success-message">You have successfully registered! Use the Login form to access your account.</div>)}
       </form>
     </div>
   );

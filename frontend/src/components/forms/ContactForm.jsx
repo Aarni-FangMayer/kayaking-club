@@ -7,6 +7,7 @@ import "./contactForm.css";
 const ContactForm = ({ title, className }) => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState({ name: "", email: "", message: "" });
+  const [sendSuccessfully, setSendSuccessfully] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +41,7 @@ const ContactForm = ({ title, className }) => {
       .then(() => {
         toast.success("Message sent!");
         setForm({ name: "", email: "", message: "" });
+        setSendSuccessfully(true);
       })
       .catch(() => {
         toast.error("Failed to send message.");
@@ -75,6 +77,7 @@ const ContactForm = ({ title, className }) => {
         />
         {errors.message && <div className="form-error">{errors.message}</div>}
         <ArrowBlueButton text={"Send"} />
+        {sendSuccessfully && (<div className="success-message">Your message has been sent.</div>)}
       </form>
     </div>
   );
