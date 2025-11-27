@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import toursService from "../../services/tours";
+import { uploadImage } from "../../utils/uploadImage";
 import "./addNewTourForm.css";
 
 const AddNewTourForm = ({ userInfo }) => {
   const [tours, setTours] = useState([]);
+
+  const [imageFile, setImageFile] = useState(null);
 
   const [newTour, setNewTour] = useState({
     name: "",
@@ -26,18 +29,30 @@ const AddNewTourForm = ({ userInfo }) => {
       .catch((error) => console.error("Error loading tours:", error));
   }, []);
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setImageFile(file);
+  };
+
   const handleTourChange = (event) => {
     const { name, value } = event.target;
     setNewTour((prev) => ({ ...prev, [name]: value }));
   };
 
-  const addTour = (event) => {
+  const addTour = async (event) => {
     event.preventDefault();
     console.log("newTour", newTour);
+
+    let imageUrl = newTour.image;
+    
+    if (imageFile) {
+      imageUrl = await uploadImage(imageFile, "tours");
+    }
 
     const tourObject = {
       id: `tour-${Date.now().toString(36)}`,
       ...newTour,
+      image: imageUrl,
       userRole: userInfo.role,
     };
     const header = {
@@ -60,6 +75,7 @@ const AddNewTourForm = ({ userInfo }) => {
         price: "",
         image: "",
       });
+      setImageFile(null);
     });
   };
 
@@ -127,35 +143,41 @@ const AddNewTourForm = ({ userInfo }) => {
       />
       <input
         className="tours__input input-image"
-        type="text"
-        name="image"
-        value={newTour.image}
-        onChange={handleTourChange}
-        placeholder="image"
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
       />
-     
-            <textarea
+
+      <textarea
         className="tours__input input-description"
         name="description"
         value={newTour.description}
         onChange={handleTourChange}
         placeholder="tour description"
       />
-      
-       <label className="tours__form-label">
+
+      <label className="tours__form-label">
         Select difficulty
         <select
-        className="form-select"
+          className="form-select"
           name="difficulty"
           value={newTour.difficulty}
           onChange={handleTourChange}
         >
-          <option className="form-select__option" value="hard">hard</option>
-          <option className="form-select__option" value="middle">middle</option>
-          <option className="form-select__option" value="easy">easy</option>
+          <option className="form-select__option" value="hard">
+            hard
+          </option>
+          <option className="form-select__option" value="middle">
+            middle
+          </option>
+          <option className="form-select__option" value="easy">
+            easy
+          </option>
         </select>
       </label>
-      <button className="tours__submit" type="submit">create new route</button>
+      <button className="tours__submit" type="submit">
+        create new route
+      </button>
     </form>
   );
 };

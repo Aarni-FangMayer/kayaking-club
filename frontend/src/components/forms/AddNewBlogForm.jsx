@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import blogsService from "../../services/blogs";
+import { uploadImage } from "../../utils/uploadImage";
 import "./addNewBlogForm.css";
 
 const AddNewBlogForm = () => {
   const [blogs, setBlogs] = useState([]);
+
+  const [imageFile, setImageFile] = useState(null);
 
   const [newBlog, setNewBlog] = useState({
     title: "",
@@ -31,8 +34,19 @@ const AddNewBlogForm = () => {
     setNewBlog((prev) => ({ ...prev, [name]: value }));
   };
 
-  const addBlog = (event) => {
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setImageFile(file);
+  };
+
+  const addBlog = async (event) => {
     event.preventDefault();
+
+    let imageUrl = newBlog.image;
+
+    if (imageFile) {
+      imageUrl = await uploadImage(imageFile, "blogs");
+    }
 
     const blogObject = {
       id: `blog-${Date.now().toString(36)}`,
@@ -43,6 +57,7 @@ const AddNewBlogForm = () => {
       }),
       author: "Admin F.",
       ...newBlog,
+      image: imageUrl,
     };
 
     blogsService.create(blogObject).then((response) => {
@@ -60,12 +75,14 @@ const AddNewBlogForm = () => {
         author: "Admin F.",
         image: "",
       });
+      setImageFile(null);
     });
   };
 
   useEffect(() => {
     console.log("Blogs updated:", blogs);
   }, [blogs]);
+
   return (
     <form className="blogs__form-fields" onSubmit={addBlog}>
       <input
@@ -94,11 +111,9 @@ const AddNewBlogForm = () => {
       />
       <input
         className="blogs__input input-image"
-        onChange={handleBlogChange}
-        type="text"
-        name="image"
-        value={newBlog.image}
-        placeholder="add image"
+        onChange={handleImageChange}
+        type="file"
+        accept="image/*"
       />
       <textarea
         className="blogs__input input-text"
@@ -107,7 +122,9 @@ const AddNewBlogForm = () => {
         value={newBlog.text}
         placeholder="add text"
       ></textarea>
-      <button className="blogs__submit" type="submit">add blog</button>
+      <button className="blogs__submit" type="submit">
+        add blog
+      </button>
     </form>
   );
 };
