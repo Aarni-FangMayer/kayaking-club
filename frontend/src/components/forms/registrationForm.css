@@ -41,7 +41,13 @@
 
 .form-error {
     font-size: 11px;
-    color: #71131ea2;
+    color: var(--green);;
+}
+
+.success-message {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--green);
 }
 
 @media (max-width: 1400px) {

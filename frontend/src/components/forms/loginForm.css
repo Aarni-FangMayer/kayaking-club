@@ -18,5 +18,5 @@
 
 .form-error {
     font-size: 11px;
-    color: #71131ea2;
+    color: var(--green);;
 }
