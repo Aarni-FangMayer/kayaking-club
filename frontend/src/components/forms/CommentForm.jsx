@@ -5,6 +5,7 @@ import "./commentForm.css";
 const CommentForm = ({ blogId, onCommentAdded, user }) => {
   const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   if (!user || !user.id) {
     return (
@@ -16,8 +17,16 @@ const CommentForm = ({ blogId, onCommentAdded, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!commentText.trim()) return;
 
+    if (!commentText.trim()) {
+      setError("Comment cannot be empty");
+      return;
+    } else if (commentText.trim().length < 5) {
+      setError("Comment must be at least 5 characters");
+      return;
+    }
+
+    setError("");
     setLoading(true);
 
     try {
@@ -35,7 +44,7 @@ const CommentForm = ({ blogId, onCommentAdded, user }) => {
       setCommentText("");
     } catch (err) {
       console.error(err);
-      alert("Ошибка при добавлении комментария");
+      alert("Failed to add comment. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -53,6 +62,7 @@ const CommentForm = ({ blogId, onCommentAdded, user }) => {
           placeholder="type your comment here..."
           required
         ></textarea>
+        {error && <div className="form-error">{error}</div>}
         <button
           className="comment-form__button"
           disabled={loading || !commentText.trim()}

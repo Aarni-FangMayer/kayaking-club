@@ -39,6 +39,11 @@
     background-color: var(--text-light);
 }
 
+.form-error {
+    font-size: 11px;
+    color: #71131ea2;
+}
+
 @media (max-width: 1400px) {
 }
 

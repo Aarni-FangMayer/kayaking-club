@@ -15,3 +15,8 @@
     background-color: var(--text-light);
     color: #2d5566;
 }
+
+.form-error {
+    font-size: 11px;
+    color: #71131ea2;
+}
