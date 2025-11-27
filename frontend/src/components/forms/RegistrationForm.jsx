@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ArrowBlueButton from "../buttons/arrow_blue/ArrowBlueButton";
 import "./registrationForm.css";
 
-const RegistrationForm = ({ title, subbutton, registerUser, className }) => {
+const RegistrationForm = ({ title, subbutton, registerUser, className, successRegistered }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -116,7 +116,7 @@ const RegistrationForm = ({ title, subbutton, registerUser, className }) => {
         ) : (
           <ArrowBlueButton text={"Join us"} />
         )}
-        {successRegistrationMessage && (<div className="success-message">You have successfully registered! Use the Login form to access your account.</div>)}
+        {(successRegistrationMessage || successRegistered) && (<div className="success-message">You have successfully registered! Use the Login form to access your account.</div>)}
       </form>
     </div>
   );

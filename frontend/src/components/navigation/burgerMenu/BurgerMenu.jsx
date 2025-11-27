@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import loginService from "../../../services/login";
@@ -8,11 +8,13 @@ import RegistrationForm from "../../forms/RegistrationForm";
 import "./burgerMenu.css";
 
 const BurgerMenu = ({ menuOpen, setMenuOpen }) => {
+  const menuRef = useRef(null);
   const { isAuth, userInfo, logout } = useAuth();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [registrationFormOpen, setRegistrationFormOpen] = useState(false);
+  const [successRegistrationMessage, setSuccessRegistrationMessage]  = useState(false);
 
   const { setUserAuthState, setUserToken, setUserInformation } = useAuth();
 
@@ -51,6 +53,7 @@ const BurgerMenu = ({ menuOpen, setMenuOpen }) => {
 
       setUsername("");
       setPassword("");
+      setMenuOpen(false);
     } catch (error) {
       console.log("Error: wrong credentials", error);
     }
@@ -70,14 +73,28 @@ const BurgerMenu = ({ menuOpen, setMenuOpen }) => {
     try {
       await userService.register(newUserData);
       console.log("User has been added to database");
+      setSuccessRegistrationMessage(true)
     } catch (error) {
       console.log("Registration error", error);
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuOpen && menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen, setMenuOpen]);
+
   return (
     <>
-      <div className={`burgerMenu ${menuOpen ? "burgerMenu--open" : ""}`}>
+      <div ref={menuRef} className={`burgerMenu ${menuOpen ? "burgerMenu--open" : ""}`}>
         <button
           className="burgerMenu__close"
           onClick={() => setMenuOpen(false)}
@@ -163,6 +180,7 @@ const BurgerMenu = ({ menuOpen, setMenuOpen }) => {
                     <RegistrationForm
                       registerUser={registerUser}
                       subbutton={"Join us"}
+                      successRegistered={successRegistrationMessage}
                     />
                   </div>
                 )}
