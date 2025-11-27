@@ -4,7 +4,11 @@ import ArrowBack from "../../../assets/icons/arrow_back.png";
 import { useAuth } from "../../../contexts/AuthContext";
 import toursService from "../../../services/tours";
 
-const SelectedTour = ({ currentTour, handleChangeSelectedTour }) => {
+const SelectedTour = ({
+  currentTour,
+  handleChangeSelectedTour,
+  showBackButton = true,
+}) => {
   const { isAuth, userInfo } = useAuth();
 
   const details = [
@@ -64,12 +68,16 @@ const SelectedTour = ({ currentTour, handleChangeSelectedTour }) => {
 
   return (
     <>
-      <button
-        className="selected-tour__back-button"
-        onClick={handleChangeSelectedTour}
-      >
-        <img src={ArrowBack} alt="" /> Back To All Routes
-      </button>
+      {showBackButton ? (
+        <button
+          className="selected-tour__back-button"
+          onClick={handleChangeSelectedTour}
+        >
+          <img src={ArrowBack} alt="" /> Back To All Routes
+        </button>
+      ) : (
+        <div className="selected-tour__spacer"></div>
+      )}
       <div className="selected-tour">
         <div className="selected-tour__content">
           <h2 className="selected-tour__title">{currentTour.name}</h2>

@@ -9,7 +9,7 @@ const InfoSectionBlog = () => {
     <section id="sectionOne" className="info">
       <div class="info-grid__item--row1">
         <div className="info__image">
-          <h2 className="info__title">Welcome To Our Travel Blog</h2>
+          <h2 className="info__title">Welcome To Our Blog</h2>
         </div>
       </div>
       <div class="info-grid__item--row2-col1">
