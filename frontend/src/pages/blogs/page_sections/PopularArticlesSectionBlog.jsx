@@ -98,7 +98,7 @@ const PopularArticlesSectionBlog = ({ setModalOpen }) => {
       <div class="grid__item--row2-col1">
         {topLikedBlogs.length > 0 && (
           <ImageBlock
-            image={blogList[2].image}
+            image={topLikedBlogs[2].image}
             alt={"Kayaks, sports equipment"}
           />
         )}
