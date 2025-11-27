@@ -21,8 +21,8 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: var(--green);
-    border: 1px solid #2d5566;
+    background: #5b6d8f;
+    border: 1px solid #253553;
     border-radius: 4px;
     margin-top: 4px;
     list-style: none;
@@ -31,6 +31,7 @@
 
 .dropdown__item {
   cursor: pointer;
+  color: var(--dark);
   padding: 0 5px;
 }
 

@@ -1,11 +1,11 @@
 .tours-catalog__tours-list {
-    grid-column: 2/19;
-    padding: 30px 37px 30px 0;
+    grid-column: 1/19;
     height: 85%;
 }
 .tours-catalog__tours-heading {
     line-height: 0.7;
     margin-bottom: 25px;
+    margin-top: 20px;
 }
 
 .tours-catalog__tours {

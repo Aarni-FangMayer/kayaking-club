@@ -10,8 +10,9 @@
 .catalog-tour__card:hover {
     margin: 0;
     padding: 5px;
-    border: solid 1px #00000013;
-    background-color: rgba(47, 80, 94, 0.55);
+    /* border: solid 1px #00000013; */
+    background-color: rgba(87, 134, 154, 0.07);
+    border: 1px solid rgba(87, 134, 154, 0.07);
 }
 
 .catalog-tour__card-image {

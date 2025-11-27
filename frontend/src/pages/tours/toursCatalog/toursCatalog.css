@@ -2,5 +2,5 @@
     display: grid;
     grid-template-columns: repeat(18, 1fr);
     height: 100%;
-    /* background-color: #fff; */
+    margin: 20px 0 0 40px
 }

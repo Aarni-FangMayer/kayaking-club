@@ -4,15 +4,21 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #2F505E;
+    color: rgba(87, 134, 154, 0.35);
+    margin: 20px 0 0 40px
+}
+
+.selected-tour__spacer {
+    margin-top: 7vh;
 }
 
 .selected-tour {
-    margin-top: 30px;
+    margin: 20px 40px 40px 40px;
     border-radius: 5px;
     height: 82vh;
     overflow-y: auto;
-    background-color: rgba(47, 80, 94, 0.55);
+    background-color: rgba(87, 134, 154, 0.07);
+    border: 1px solid rgba(87, 134, 154, 0.07);
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--text-light) transparent;
@@ -41,7 +47,7 @@
 
 .selected-tour__subtitle {
     margin-bottom: 25px;
-    color: #28414d;
+    color: rgba(87, 134, 154, 0.4);
     font-size: 16px;
 }
 
@@ -56,7 +62,7 @@
 }
 
 .selected-tour__detail {
-    background-color: rgba(40, 65, 77, 0.7);
+    background-color: rgba(87, 134, 154, 0.25);
     padding: 2px 15px;
     border-radius: 3px;
     border: 1px solod #00000013;
@@ -73,8 +79,8 @@
     width: 135px;
     height: 35px;
     border-radius: 3px;
-    border: solid 1px #82959d65;
-    background-color: rgba(90, 121, 141, 0.7);
+    border: 1px solid rgba(87, 134, 154, 0.07);
+    background-color: rgba(87, 134, 154, 0.4);
     color: var(--text-light);
     margin-top: 35px;
     display: inline-block;

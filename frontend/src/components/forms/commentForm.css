@@ -18,15 +18,21 @@
     padding: 15px;
     border-radius: 3px;
     border: none;
-    background-color: var(--text-light);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .comment-form__button {
-    background-color: rgba( 0, 0, 0, 0.2);
+    background-color: rgba(87, 134, 154, 0.4);
+    color: var(--text-light);
     border: none;
     border-radius: 3px;
-    padding: 5px 35px;
+    padding: 5px 55px;
     margin-top: 5px;
+}
+
+.comment-form__button:hover {
+    background-color: var(--text-light);
+    color: #28414d;
 }
 
 @media (max-width: 1400px) {
