@@ -5,6 +5,15 @@
     margin-bottom: 15px;
 }
 
+.contacts__item a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 25px; 
+    text-decoration: none;
+}
+
 @media (max-width: 1024px) {
     .contacts__item {
         column-gap: 30px;

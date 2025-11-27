@@ -19,12 +19,14 @@ const ContactsSectionHome = () => {
             <ContactItem
               image={PhoneImage}
               alt={"Phone icon"}
-              text={"+1 (654) 896-4712"}
+              text={"+16548964712"}
+              type="phone"
             />
             <ContactItem
               image={MailImage}
               alt={"Email icon"}
               text={"hello@riverpulseclub.com"}
+              type="email"
             />
             <ContactItem
               image={LocationImage}
