@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import loginService from "../../../services/login";
 import userService from "../../../services/userService";
 import LoginForm from "../../forms/LoginForm";
@@ -17,6 +17,7 @@ const BurgerMenu = ({ menuOpen, setMenuOpen }) => {
   const { setUserAuthState, setUserToken, setUserInformation } = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleAccountClick = () => {
     if (!isAuth) {
@@ -57,6 +58,11 @@ const BurgerMenu = ({ menuOpen, setMenuOpen }) => {
 
   const handleLogoutClick = () => {
     logout();
+
+    if (location.pathname === "/account" || location.pathname === "/admin") {
+      navigate("/");
+    }
+
     setMenuOpen(false);
   };
 
@@ -154,7 +160,10 @@ const BurgerMenu = ({ menuOpen, setMenuOpen }) => {
                 {registrationFormOpen && (
                   <div className="authentication__login-block">
                     Register here
-                    <RegistrationForm registerUser={registerUser} subbutton={"Join us"}/>
+                    <RegistrationForm
+                      registerUser={registerUser}
+                      subbutton={"Join us"}
+                    />
                   </div>
                 )}
               </div>
