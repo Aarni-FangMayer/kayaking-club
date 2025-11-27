@@ -4,6 +4,7 @@ const tourSchema = new mongoose.Schema({
   name: String,
   subtitle: String,
   description: String,
+  shortDescription: String,
   difficulty: String,
   dateOfTrip: String,
   included: String,

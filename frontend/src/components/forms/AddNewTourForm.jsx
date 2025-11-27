@@ -9,6 +9,7 @@ const AddNewTourForm = ({ userInfo }) => {
     name: "",
     subtitle: "",
     description: "",
+    shortDescription: "",
     included: "",
     dateOfTrip: "",
     difficulty: "easy",
@@ -50,6 +51,7 @@ const AddNewTourForm = ({ userInfo }) => {
         name: "",
         subtitle: "",
         description: "",
+        shortDescription: "",
         included: "",
         dateOfTrip: "",
         difficulty: "easy",
@@ -82,6 +84,14 @@ const AddNewTourForm = ({ userInfo }) => {
         value={newTour.subtitle}
         onChange={handleTourChange}
         placeholder="tour subtitle"
+      />
+      <input
+        className="tours__input shortDescription"
+        type="text"
+        name="shortDescription"
+        value={newTour.shortDescription}
+        onChange={handleTourChange}
+        placeholder="tour short description"
       />
       <input
         className="tours__input input-included"
