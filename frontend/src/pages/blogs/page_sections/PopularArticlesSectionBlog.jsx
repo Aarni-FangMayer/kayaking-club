@@ -63,7 +63,7 @@ const PopularArticlesSectionBlog = ({ setModalOpen }) => {
           article={currentArticle}
         />
       </BlogsModal>
-      <div class="grid__item--row1-col1">
+      <div className="grid__item--row1-col1">
         {topLikedBlogs.length > 0 && (
           <ArticleCard
             subtitle={topLikedBlogs[0].subtitle}
@@ -78,10 +78,10 @@ const PopularArticlesSectionBlog = ({ setModalOpen }) => {
         )}
       </div>
       <h2 className="grid__item--mobile-title">Popular Articles</h2>
-      <div class="grid__item--row1-col2">
+      <div className="grid__item--row1-col2">
         <ImageWithTitleBlock image={Image4} title={"Popular Articles"} />
       </div>
-      <div class="grid__item--row1-col3">
+      <div className="grid__item--row1-col3">
         {topLikedBlogs.length > 0 && (
           <ArticleCard
             subtitle={topLikedBlogs[1].subtitle}
@@ -95,7 +95,7 @@ const PopularArticlesSectionBlog = ({ setModalOpen }) => {
           />
         )}
       </div>
-      <div class="grid__item--row2-col1">
+      <div className="grid__item--row2-col1">
         {topLikedBlogs.length > 0 && (
           <ImageBlock
             image={topLikedBlogs[2].image}
@@ -103,7 +103,7 @@ const PopularArticlesSectionBlog = ({ setModalOpen }) => {
           />
         )}
       </div>
-      <div class="grid__item--row2-col2">
+      <div className="grid__item--row2-col2">
         {topLikedBlogs.length > 0 && (
           <ArticleCard
             subtitle={topLikedBlogs[2].subtitle}
@@ -117,7 +117,7 @@ const PopularArticlesSectionBlog = ({ setModalOpen }) => {
           />
         )}
       </div>
-      <div class="grid__item--row2-col3">
+      <div className="grid__item--row2-col3">
         {topLikedBlogs.length > 0 && (
           <ImageBlock
             image={topLikedBlogs[1].image}

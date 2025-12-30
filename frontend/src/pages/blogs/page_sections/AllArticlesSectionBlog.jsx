@@ -66,7 +66,7 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
           article={currentArticle}
         />
       </BlogsModal>
-      <div class="all-blogs-grid__item--row1-col1">
+      <div className="all-blogs-grid__item--row1-col1">
         {topLikedBlogs.length > 1 && (
           <ImageBlock
             image={topLikedBlogs[3].image}
@@ -74,7 +74,7 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
           />
         )}
       </div>
-      <div class="all-blogs-grid__item--row1-col2">
+      <div className="all-blogs-grid__item--row1-col2">
         {topLikedBlogs.length > 0 && (
           <ArticleCard
             subtitle={topLikedBlogs[3].subtitle}
@@ -88,7 +88,7 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
           />
         )}
       </div>
-      <div class="all-blogs-grid__item--col3">
+      <div className="all-blogs-grid__item--col3">
         <CardList
           arr={blogsByLikesAsc}
           subtitle={"article"}
@@ -96,7 +96,7 @@ const AllArticlesSectionBlog = ({ setModalOpen }) => {
           callback={openCurrentArticle}
         />
       </div>
-      <div class="all-blogs-grid__item--row2-col1">
+      <div className="all-blogs-grid__item--row2-col1">
         {topLikedBlogs.length > 0 && (
           <ArticleCard
             subtitle={topLikedBlogs[4].subtitle}

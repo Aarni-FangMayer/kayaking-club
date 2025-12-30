@@ -7,16 +7,16 @@ import Image3 from "../../../assets/images/blog_page_img3.jpg";
 const InfoSectionBlog = () => {
   return (
     <section id="sectionOne" className="info">
-      <div class="info-grid__item--row1">
+      <div className="info-grid__item--row1">
         <div className="info__image">
           <h2 className="info__title">Welcome To Our Blog</h2>
         </div>
       </div>
-      <div class="info-grid__item--row2-col1">
+      <div className="info-grid__item--row2-col1">
         <ImageBlock image={Image2} alt={"Man paddling kayak"}
         />
       </div>
-      <div class="info-grid__item--row2-col2">
+      <div className="info-grid__item--row2-col2">
         <div className="info__item--text">
           <h3>Find Inspiration Here</h3>
           <p>
@@ -24,7 +24,7 @@ const InfoSectionBlog = () => {
           </p>
         </div>
       </div>
-      <div class="info-grid__item--row2-col3">
+      <div className="info-grid__item--row2-col3">
         <ImageBlock image={Image3} alt={"Kayaking in wild nature"}
         />
       </div>
