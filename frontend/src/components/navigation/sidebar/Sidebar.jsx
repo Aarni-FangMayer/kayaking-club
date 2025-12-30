@@ -18,6 +18,8 @@ const Sidebar = ({ activeSection, setActiveSection, buttonScrollRef }) => {
       setTimeout(() => {
         buttonScrollRef.current = false;
       }, 800);
+    } else {
+      console.warn(`Element with id ${id} not found.`);
     }
   };
 

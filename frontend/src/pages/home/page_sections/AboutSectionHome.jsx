@@ -6,7 +6,8 @@ import ManWhitDogImage from "../../../assets/images/manwithdog_img.jpg"
 
 const AboutSectionHome = () => {
   return (
-    <TextWithImgSection image={ManWhitDogImage} decor={true} >
+    <section id="sectionTwo">
+    <TextWithImgSection  image={ManWhitDogImage} decor={true} >
       <TextBlock 
           title={"About Us"}
           subtitle={"Our Philosophy"}
@@ -15,6 +16,8 @@ const AboutSectionHome = () => {
           }
         />
     </TextWithImgSection>
+    </section>
+
   );
 };
 
