@@ -17,33 +17,38 @@ const PromoSectionBlog = () => {
     navigate("/tours");
   };
 
-   const registerUser = async (newUserData) => {
-      try {
-        await userService.register(newUserData);
-  
-        toast.success("Registration successful!");
+  const registerUser = async (newUserData) => {
+    try {
+      await userService.register(newUserData);
 
-        setNewUserregistered(true);
-        console.log("newUserRegistered", newUserRegistered);
-      } catch (error) {
-        console.log("Registration error", error);
-        toast.error("Registration failed. Please try again.");
-      }
-    };
+      toast.success("Registration successful!");
+
+      setNewUserregistered(true);
+      console.log("newUserRegistered", newUserRegistered);
+    } catch (error) {
+      console.log("Registration error", error);
+      toast.error("Registration failed. Please try again.");
+    }
+  };
 
   return (
-    <TextWithImgSection image={PromoImage}>
-      <TextBlock
-        title={"Get involved"}
-        subtitle={"You can join our club"}
-        description={
-          "Becoming a member means more than just kayaking. You’ll connect with people who share your passion for nature and adventure, while enjoying exclusive routes, events, and benefits. Our community welcomes everyone who wants to paddle, explore, and create lasting memories on the water."
-        }
-        btnText={"Choose a route"}
-        onClickFunction={handleGoToBlogs}
-      />
-      <RegistrationForm title={"Quick registration"} registerUser={registerUser} />
-    </TextWithImgSection>
+    <section id="sectionFour">
+      <TextWithImgSection image={PromoImage}>
+        <TextBlock
+          title={"Get involved"}
+          subtitle={"You can join our club"}
+          description={
+            "Becoming a member means more than just kayaking. You’ll connect with people who share your passion for nature and adventure, while enjoying exclusive routes, events, and benefits. Our community welcomes everyone who wants to paddle, explore, and create lasting memories on the water."
+          }
+          btnText={"Choose a route"}
+          onClickFunction={handleGoToBlogs}
+        />
+        <RegistrationForm
+          title={"Quick registration"}
+          registerUser={registerUser}
+        />
+      </TextWithImgSection>
+    </section>
   );
 };
 
