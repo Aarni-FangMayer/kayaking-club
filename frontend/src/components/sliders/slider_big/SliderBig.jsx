@@ -5,8 +5,14 @@ import SliderButtons from "../../buttons/slider_buttons/SliderButtons";
 
 import "./sliderBig.css";
 
-const SliderBig = ({ initialCards, title, setRoutesModalOpen, setModalOpen}) => {
-  // const navigate = useNavigate();
+const SliderBig = ({
+  initialCards,
+  title,
+  setRoutesModalOpen,
+  setModalOpen,
+  setSelectedTour,
+  setModalView,
+}) => {
   const [cards, setCards] = useState(initialCards);
 
   const handleNext = () => {
@@ -34,19 +40,33 @@ const SliderBig = ({ initialCards, title, setRoutesModalOpen, setModalOpen}) => 
         {cards.map((card, index) => {
           return (
             <Card
+              id={card.id}
               key={card.id + "-" + index}
-              subtitle={card.subtitle}
-              title={card.title}
+              title={card.name}
               description={card.description}
               price={card.price}
               image={card.image}
               isActive={index === 0}
+              setRoutesModalOpen={setRoutesModalOpen}
+              setModalOpen={setModalOpen}
+              setSelectedTour={setSelectedTour}
+              setModalView={setModalView}
             />
           );
         })}
         <div className="slider-big__controls">
           <SliderButtons nextSlide={handleNext} prevSlide={handlePrev} />
-          <button className="slider-big__button" onClick={() => {setRoutesModalOpen(true); setModalOpen(true)}} >Show all directions</button>
+          <button
+            className="slider-big__button"
+            onClick={() => {
+              setSelectedTour(null);
+              setModalView("catalog");
+              setRoutesModalOpen(true);
+              setModalOpen(true);
+            }}
+          >
+            Show all directions
+          </button>
         </div>
       </div>
     </div>

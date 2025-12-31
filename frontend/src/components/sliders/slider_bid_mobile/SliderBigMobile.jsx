@@ -17,7 +17,7 @@ const SliderBigMobile = ({ cards, blockTitle, setRoutesModalOpen, setModalOpen }
           return (
             <CardMobileActive
               key={card.id}
-              title={card.title}
+              title={card.name}
               description={card.description}
               price={card.price}
               image={card.image}

@@ -1,67 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SliderBig from "../../../components/sliders/slider_big/SliderBig";
-import SliderBigMobile from "../../../components/sliders/slider_bid_mobile/SliderBigMobile"
+import SliderBigMobile from "../../../components/sliders/slider_bid_mobile/SliderBigMobile";
 import RoutesModal from "../../../components/modals/routesModal/RoutesModal";
 import ToursCatalog from "../toursCatalog/ToursCatalog";
+import SelectedTour from "../toursCatalog/SelectedTour";
+import toursService from "../../../services/tours";
+import { filterSingleDayTrips } from "../../../utils/sortingTours";
 
 import "./singleDayRouteSection.css";
-import NatureImage1 from "../../../assets/images/nature_img1.jpg";
-import NatureImage2 from "../../../assets/images/nature_img2.jpg";
-import NatureImage3 from "../../../assets/images/nature_img3.jpg";
-import NatureImage4 from "../../../assets/images/nature_img4.jpg";
 
 const SingleDayRouteSection = ({ setModalOpen }) => {
-    const [routesModalOpen, setRoutesModalOpen] = useState(false);
-  
-    const closeRoutesModal = () => {
-      setRoutesModalOpen(false);
-      setModalOpen(false);
-    }
+  const [routesModalOpen, setRoutesModalOpen] = useState(false);
+  const [initialCards, setInitialCards] = useState([]);
+  const [modalView, setModalView] = useState("catalog");
+  const [selectedTour, setSelectedTour] = useState(null);
 
-  const initialCards = [
-    {
-      id: 1,
-      subtitle: "difficulty: easy",
-      title: "Bow River Serenity",
-      description:
-        "Ideal for beginners, this calm and scenic route winds through the heart of Banff National Park, offering crystal-clear waters and mountain views.",
-      price: "950€",
-      image: NatureImage1,
-    },
-    {
-      id: 2,
-      subtitle: "difficulty: middle",
-      title: "Lake Louise Paddle",
-      description:
-        "Ideal for beginners, this calm and scenic route winds through the heart of Banff National Park, offering crystal-clear waters and mountain views.",
-      price: "1010€",
-      image: NatureImage2,
-    },
-    {
-      id: 3,
-      subtitle: "difficulty: easy",
-      title: "Algonquin Explorer",
-      description:
-        "Ideal for beginners, this calm and scenic route winds through the heart of Banff National Park, offering crystal-clear waters and mountain views.",
-      price: "790€",
-      image: NatureImage3,
-    },
-    {
-      id: 4,
-      subtitle: "difficulty: hard",
-      title: "Yukon Wilderness",
-      description:
-        "This route offers breathtaking views of untouched nature and wild rivers like the Yukon River. It’s ideal for those seeking adventure and the chance to enjoy solitude in the wild.",
-      price: "1150€",
-      image: NatureImage4,
-    },
-  ];
+  const currentTour = initialCards.find((tour) => tour.id === selectedTour);
+  const closeRoutesModal = () => {
+    setRoutesModalOpen(false);
+    setModalOpen(false);
+  };
+
+  useEffect(() => {
+    toursService.getAll().then((response) => {
+      const tours = response.data;
+      const filteredTours = filterSingleDayTrips(tours);
+      setInitialCards(filteredTours);
+    });
+  }, []);
+
+  if (!initialCards.length) return null;
+
   return (
     <section id="sectionTwo">
-      <SliderBig initialCards={initialCards} title={"Single-Day Trips"} setRoutesModalOpen={setRoutesModalOpen} setModalOpen={setModalOpen} />
-      <SliderBigMobile cards={initialCards} blockTitle={"Single-Day Trips"} setRoutesModalOpen={setRoutesModalOpen} setModalOpen={setModalOpen}  />
+      <SliderBig
+        initialCards={initialCards.slice(0, 4)}
+        title={"Single-Day Trips"}
+        setRoutesModalOpen={setRoutesModalOpen}
+        setModalOpen={setModalOpen}
+        setSelectedTour={setSelectedTour}
+        setModalView={setModalView}
+      />
+      <SliderBigMobile
+        cards={initialCards.slice(0, 4)}
+        blockTitle={"Single-Day Trips"}
+        setRoutesModalOpen={setRoutesModalOpen}
+        setModalOpen={setModalOpen}
+      />
       <RoutesModal isModalOpen={routesModalOpen} closeModal={closeRoutesModal}>
-        <ToursCatalog singleDayTitle={" (Single-day)"} multiDayTitle={""} />
+        {modalView === "selected" && currentTour ? (
+          <SelectedTour currentTour={currentTour} showBackButton={false} />
+        ) : (
+          <ToursCatalog singleDayTitle={""} multiDayTitle={""} />
+        )}
       </RoutesModal>
     </section>
   );

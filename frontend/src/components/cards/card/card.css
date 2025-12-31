@@ -29,6 +29,11 @@
     margin: 15px 0;
 }
 
+.card__description {
+    color: var(--text-light);
+    opacity: 0.6;
+}
+
 .card__footer {
     display: flex;
     justify-content: space-between;
