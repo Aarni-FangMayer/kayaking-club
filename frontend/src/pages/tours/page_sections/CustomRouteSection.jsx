@@ -8,7 +8,7 @@ import CustomRoutesImg from "../../../assets/images/routes_page_img2.jpg";
 
 const CustomRouteSection = () => {
   return (
-    <section id="sectionFour">
+    <section id="sectionFour" className="custom-route-section__wrapper">
       <TextWithImgSection image={CustomRoutesImg}>
         <TextBlock
           title={"Custom Routes"}

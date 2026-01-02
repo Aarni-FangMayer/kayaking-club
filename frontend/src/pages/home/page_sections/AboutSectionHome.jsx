@@ -6,7 +6,7 @@ import ManWhitDogImage from "../../../assets/images/manwithdog_img.jpg"
 
 const AboutSectionHome = () => {
   return (
-    <section id="sectionTwo">
+    <section id="sectionTwo" className="about-section__wrapper">
     <TextWithImgSection  image={ManWhitDogImage} decor={true} >
       <TextBlock 
           title={"About Us"}

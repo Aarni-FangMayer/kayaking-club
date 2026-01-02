@@ -16,7 +16,7 @@
     .card-mobile__list {
         grid-column: 2/18;
         display: flex;
-        gap: 10px;
+        justify-content: space-between;
     }
     .card-mobile__button {
         width: 145px;

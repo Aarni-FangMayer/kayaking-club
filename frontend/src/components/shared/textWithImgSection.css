@@ -30,7 +30,18 @@
 }
 
 @media (max-width: 1024px) {
-
+    .text-section__content-text {
+        grid-column: 1/19;
+        gap: 30px;
+    }
+    .text-section__content-image {
+        grid-column: 1/19;
+        height: 300px;
+        margin-top: 50px;
+    }
+    .content-decor {
+        width: 100%;
+    }
 }
 
 @media (max-width: 840px) {

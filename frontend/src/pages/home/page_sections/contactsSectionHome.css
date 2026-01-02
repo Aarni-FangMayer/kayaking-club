@@ -91,10 +91,21 @@
     .contacts__subtitle {
         margin-bottom: 15px;
     }
+    .contacts__content {
+        grid-column: 1/18;
+        display: flex;
+        gap: 20px;
+    }
+    .contacts__details {
+        width: 60vw;
+    }
     .contacts__map {
         grid-column: 10/18;
         height: 100%;
         padding-bottom: 55px;
+    }
+    .map-overlay {
+        display: none;
     }
 }
 
@@ -108,9 +119,9 @@
         row-gap: 0;
         margin-bottom: 55px;
     }
-    .contacts__content {
+    /* .contacts__content {
         grid-column: 1/8;
-    }
+    } */
     .contacts__map {
         grid-column: 1/19;
         height: 330px;

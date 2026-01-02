@@ -32,7 +32,7 @@ const PromoSectionBlog = () => {
   };
 
   return (
-    <section id="sectionFour">
+    <section id="sectionFour" className="promo-section-blog__wrapper">
       <TextWithImgSection image={PromoImage}>
         <TextBlock
           title={"Get involved"}

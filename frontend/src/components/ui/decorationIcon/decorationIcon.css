@@ -25,3 +25,9 @@
         letter-spacing: 1px;
     }
 }
+
+@media (max-width: 1024px) {
+    .decoration-icon {
+        width: 20%;
+    }
+}

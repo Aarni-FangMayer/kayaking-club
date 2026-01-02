@@ -6,7 +6,6 @@ import CardMobileList from "../../cards/card_mobile/CardMobileList";
 import "./sliderBigMobile.css";
 
 const SliderBigMobile = ({ cards, blockTitle, setRoutesModalOpen, setModalOpen }) => {
-  // const navigate = useNavigate();
   const [selected, setSelected] = useState(1);
 
   return (

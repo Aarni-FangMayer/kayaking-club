@@ -36,7 +36,7 @@ const MultiDayRouteSection = ({ setModalOpen }) => {
   if (!initialCards.length) return null;
 
   return (
-    <section id="sectionThree">
+    <section id="sectionThree" className="multi-day-routes__wrapper">
       <SliderBig
         initialCards={initialCards.slice(0, 4)}
         title={"Multi-day expeditions"}

@@ -16,7 +16,7 @@ const ChooseRouteSection = ({ setModalOpen }) => {
   };
   return (
     <>
-      <section id="sectionOne">
+      <section id="sectionOne" className="choose-route-section__wrapper">
         <TextWithImgSection image={RoutesImg}>
           <TextBlock
             title={"Select Route"}

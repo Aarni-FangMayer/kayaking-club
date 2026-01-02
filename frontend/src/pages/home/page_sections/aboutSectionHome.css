@@ -1,0 +1,5 @@
+@media (max-width: 1024px) {
+    .about-section__wrapper {
+        padding: 120px 50px 0 50px;
+    }
+}
